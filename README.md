@@ -1,85 +1,85 @@
 # Drevo Light
 
-Editor de iluminación para el teclado **Drevo Tyrfing V2** (USB `0416:a0f8`) escrito en Python con PySide6. Funciona en Linux y Windows sin el software oficial.
+Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written in Python with PySide6. Runs on Linux and Windows without the official software.
 
-> Estado: el protocolo está verificado byte a byte contra la librería de referencia `dtv2` con un HID simulado, pero **aún no se ha probado con un teclado físico**.
+> Status: the protocol has been verified byte for byte against the reference library `dtv2` using a simulated HID device, but it has **not yet been tested with a physical keyboard**.
 
-## Características
+## Features
 
-- Teclado visual realista para seleccionar teclas (clic, arrastre de áreas, Ctrl alterna, Mayús reemplaza) y pintarlas.
-- Distribuciones US ANSI y UK/ES/DE/FR/IT ISO, en versión completa y TKL.
-- Pestañas de colores (por tecla, grupos y filas, degradados, colores recientes), efectos del teclado (estático, respiración, radar, flujo, …) y aplicación en vivo.
-- Deshacer/rehacer (hasta 100 pasos) y copiar/pegar color.
-- 20 perfiles (colores, efecto, modo y distribución), importación/exportación JSON validada.
-- 6 idiomas (es, en, fr, it, de, pt) y 5 temas (sistema, claro, oscuro, azul oscuro, Drevo).
-- Manual de usuario integrado, imprimible y exportable a PDF.
-- Envío al teclado en segundo plano (la interfaz no se bloquea) y reaplicación del perfil al reconectar.
+- Realistic visual keyboard for selecting keys (click, area drag, Ctrl toggles, Shift replaces) and painting them.
+- US ANSI and UK/ES/DE/FR/IT ISO layouts, in full-size and TKL versions.
+- Color tab (per key, groups and rows, gradients, recent colors), keyboard effects (static, breathing, radar, stream, ...) and live apply.
+- Undo/redo (up to 100 steps) and copy/paste color.
+- 20 profiles (colors, effect, mode and layout) with validated JSON import/export.
+- 6 languages (es, en, fr, it, de, pt) and 5 themes (system, light, dark, dark blue, Drevo).
+- Built-in user manual, printable and exportable to PDF.
+- Hardware commands are sent in the background (the UI never blocks); the active profile is re-applied when the keyboard is reconnected.
 
-## Requisitos y ejecución
+## Requirements and running
 
-Python 3.10 o superior.
+Python 3.10 or newer.
 
 ```bash
-./run.sh          # Linux/macOS: crea .venv, instala dependencias y arranca
-run.bat           # Windows
-python -m drevolight   # si ya tienes las dependencias instaladas
+./run.sh               # Linux/macOS: creates .venv, installs dependencies and starts the app
+run.bat                # Windows
+python -m drevolight   # if the dependencies are already installed
 ```
 
-En Linux se necesita una regla udev para acceder al dispositivo: menú *Archivo → Instalar reglas udev* (usa `pkexec`) o `packaging/install_linux.sh`. La regla usa `TAG+="uaccess"`, es decir, acceso solo para el usuario con sesión iniciada.
+On Linux a udev rule is needed to access the device: menu *File -> Install udev rules* (uses `pkexec`) or `packaging/install_linux.sh`. The rule uses `TAG+="uaccess"`, i.e. access only for the logged-in local user.
 
-## Arquitectura
+## Architecture
 
 ```
-drevo_light.py         lanzador
+drevo_light.py         launcher
 drevolight/
-  app.py               main(): QApplication, splash, ventana
-  window.py            MainWindow: menús, páginas, perfiles, conexión
-  keyboard_view.py     KeyItem + KeyboardView (QGraphicsView, selección propia)
-  proto.py             protocolo HID nativo (constructores de paquetes puros + clase Keyboard)
-  keys.py              códigos HID de teclas y categorías
-  core.py              i18n, temas, distribuciones, perfiles, ajustes
-  state.py             resolución de colores, instantáneas, historial deshacer/rehacer
-  worker.py            HardwareRunner (QThreadPool de un hilo)
-  gfx.py               utilidades de dibujo, paletas y hojas de estilo QSS
-  dialogs.py           manual/PDF, acerca de, licencias, gradiente, gestor de perfiles, udev
-  widgets.py           Dot, logo, botones laterales, splash
-lang/                  un XML por idioma y un manual HTML por idioma
-assets/                icono de la app y iconos SVG (Lucide)
-packaging/             PyInstaller, Inno Setup, .desktop, scripts de instalación
+  app.py               main(): QApplication, splash, window
+  window.py            MainWindow: menus, pages, profiles, connection
+  keyboard_view.py     KeyItem + KeyboardView (QGraphicsView, custom selection)
+  proto.py             native HID protocol (pure packet builders + Keyboard class)
+  keys.py              HID key codes and categories
+  core.py              i18n, themes, layouts, profiles, settings
+  state.py             color resolution, snapshots, undo/redo history
+  worker.py            HardwareRunner (single-thread QThreadPool)
+  gfx.py               drawing helpers, palettes and QSS stylesheets
+  dialogs.py           manual/PDF, about, licenses, gradient, profile manager, udev
+  widgets.py           Dot, logo, sidebar buttons, splash
+lang/                  one XML per language and one HTML manual per language
+assets/                app icon and SVG icons (Lucide)
+packaging/             PyInstaller, Inno Setup, .desktop, install scripts
 tests/                 pytest
 ```
 
-### Protocolo
+### Protocol
 
-`proto.py` separa la construcción de paquetes (funciones puras: `key_packets`, `whole_keyboard_packets`, `effect_packet`) del acceso al dispositivo (`Keyboard`, sobre `hidapi`). Todos los informes de salida son de 32 bytes, rellenados con ceros. Los colores completos usan una cabecera de preparación, marcadores en el primer paquete y un paquete de confirmación. `Keyboard` ordena las interfaces HID del dispositivo y permite forzar una ruta concreta.
+`proto.py` separates packet construction (pure functions: `key_packets`, `whole_keyboard_packets`, `effect_packet`) from device access (`Keyboard`, built on `hidapi`). All output reports are 32 bytes, zero-padded. Whole-keyboard color updates use a prepare header, marker bytes in the first packet and a commit packet. `Keyboard` ranks the device's HID interfaces and lets you force a specific path.
 
-### Interfaz y datos
+### UI and data
 
-- La edición trabaja sobre un estado en memoria; el hardware solo cambia con *Aplicar*, un efecto o el modo en vivo.
-- Cada cambio guarda una instantánea (`History`); el título muestra `*` si hay cambios sin guardar.
-- El envío se hace en `HardwareRunner`; los errores se muestran en un cuadro o en la barra de estado (modo en vivo).
-- Los textos viven en `lang/xx.xml` (`<s id="…">`, marcadores `{n}`), cargados por `I18N` y consultados con `tr()`.
-- Ajustes y perfiles: `~/.config/drevo-light/` (o el equivalente de cada sistema); se migran los ficheros de la versión 1.0.
+- Editing works on an in-memory state; the hardware only changes on *Apply*, an effect, or live mode.
+- Every change stores a snapshot (`History`); the window title shows `*` when there are unsaved changes.
+- Sending runs in `HardwareRunner`; errors appear in a dialog, or in the status bar in live mode.
+- Texts live in `lang/xx.xml` (`<s id="...">`, `{n}` placeholders), loaded by `I18N` and looked up with `tr()`.
+- Settings and profiles are stored in `~/.config/drevo-light/` (or the platform equivalent); files from version 1.0 are migrated.
 
-## Pruebas
+## Tests
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
 QT_QPA_PLATFORM=offscreen python -m pytest -q
 ```
 
-42 pruebas: equivalencia del protocolo con `dtv2`, selección con ratón, deshacer, perfiles, importaciones, envío con teclado simulado, traducciones y PDF del manual. El CI (`.github/workflows/ci.yml`) las ejecuta en Linux y Windows.
+42 tests: protocol equivalence with `dtv2`, mouse selection, undo, profiles, imports, sending with a fake keyboard, translations and manual PDF. CI (`.github/workflows/ci.yml`) runs them on Linux and Windows.
 
-## Empaquetado
+## Packaging
 
-- `packaging/build_linux.sh` / `build_windows.bat`: ejecutables con PyInstaller (`packaging/drevo-light.spec`).
-- `packaging/drevo-light.iss`: instalador de Windows (Inno Setup).
-- `clean.sh` / `clean.bat`: borran entorno virtual, cachés y compilaciones antes de subir a git.
+- `packaging/build_linux.sh` / `build_windows.bat`: PyInstaller executables (`packaging/drevo-light.spec`).
+- `packaging/drevo-light.iss`: Windows installer (Inno Setup).
+- `clean.sh` / `clean.bat`: remove the virtual environment, caches and build output before committing.
 
-Solo se ha verificado la compilación de PyInstaller en Linux.
+Only the Linux PyInstaller build has been verified.
 
-## Licencias
+## License
 
-GPL-3.0-or-later (ver `LICENSE`). Iconos Lucide (ISC). `dtv2` (CC-BY-NC-SA) se usa únicamente como referencia en las pruebas y no se distribuye. Detalles en `THIRD_PARTY_LICENSES.txt`.
+GPL-3.0-or-later (see `LICENSE`). Lucide icons (ISC). `dtv2` (CC-BY-NC-SA) is used only as a reference in the tests and is not distributed. Details in `THIRD_PARTY_LICENSES.txt`.
 
-© 2026 candion <candion@gmail.com>
+Copyright (C) 2026 candion <candion@gmail.com>
