@@ -224,7 +224,6 @@
   <s id="udev.confirm">Le regole udev verranno installate con i permessi di amministratore:\n\n{cmd}\n\nContinuare?</s>
   <s id="udev.ok">Regole installate. Scollega e ricollega la tastiera.</s>
   <s id="udev.fail">Impossibile installare le regole: {err}</s>
-  <s id="btn.preview_fx">Anteprima</s>
   <s id="preview.title">Anteprima dell'effetto</s>
   <s id="preview.pause">Pausa</s>
   <s id="preview.play">Riprendi</s>

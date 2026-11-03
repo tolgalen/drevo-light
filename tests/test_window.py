@@ -356,13 +356,11 @@ def test_effect_preview_colors_and_dialog(win, qapp):
     a = preview.effect_colors("stream", 0.0, params, pos, ext)
     b = preview.effect_colors("stream", 0.5, params, pos, ext)
     assert a != b  # the animation moves
-    win.show_preview()
+    d = win.preview_panel  # always present in the Effects tab
+    win.show_page(2)
     pump(qapp)
-    d = win.preview_panel
     assert not d.isHidden()
     d.tick()
     d.press("a")
     d.toggle()
     d.toggle()
-    win.show_preview()
-    assert d.isHidden()

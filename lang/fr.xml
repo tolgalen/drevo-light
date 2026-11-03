@@ -224,7 +224,6 @@
   <s id="udev.confirm">Les règles udev seront installées avec les droits administrateur :\n\n{cmd}\n\nContinuer ?</s>
   <s id="udev.ok">Règles installées. Débranchez puis rebranchez le clavier.</s>
   <s id="udev.fail">Impossible d'installer les règles : {err}</s>
-  <s id="btn.preview_fx">Aperçu</s>
   <s id="preview.title">Aperçu de l'effet</s>
   <s id="preview.pause">Pause</s>
   <s id="preview.play">Reprendre</s>

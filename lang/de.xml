@@ -224,7 +224,6 @@
   <s id="udev.confirm">Die udev-Regeln werden mit Administratorrechten installiert:\n\n{cmd}\n\nFortfahren?</s>
   <s id="udev.ok">Regeln installiert. Tastatur aus- und wieder einstecken.</s>
   <s id="udev.fail">Die Regeln konnten nicht installiert werden: {err}</s>
-  <s id="btn.preview_fx">Vorschau</s>
   <s id="preview.title">Effektvorschau</s>
   <s id="preview.pause">Pause</s>
   <s id="preview.play">Fortsetzen</s>

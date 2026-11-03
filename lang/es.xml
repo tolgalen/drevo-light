@@ -224,7 +224,6 @@
   <s id="udev.confirm">Se instalarán las reglas udev con permisos de administrador:\n\n{cmd}\n\n¿Continuar?</s>
   <s id="udev.ok">Reglas instaladas. Desconecta y vuelve a conectar el teclado.</s>
   <s id="udev.fail">No se pudieron instalar las reglas: {err}</s>
-  <s id="btn.preview_fx">Previsualizar</s>
   <s id="preview.title">Previsualización del efecto</s>
   <s id="preview.pause">Pausar</s>
   <s id="preview.play">Reanudar</s>

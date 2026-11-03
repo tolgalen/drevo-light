@@ -783,13 +783,9 @@ class MainWindow(QMainWindow):
         b = QPushButton(tr("btn.apply_fx"))
         b.clicked.connect(lambda: self.apply_effect())
         brow.addWidget(b)
-        pb = QPushButton(tr("btn.preview_fx"))
-        pb.clicked.connect(self.show_preview)
-        brow.addWidget(pb)
         brow.addStretch(1)
         v.addLayout(brow)
         self.preview_panel = preview.PreviewPanel(self, self.effect_params)
-        self.preview_panel.setVisible(False)
         v.addWidget(self.preview_panel, 10)
         v.addStretch(1)
         return w
@@ -801,10 +797,6 @@ class MainWindow(QMainWindow):
         return EFFECT_IDS[st["effect"]], dict(color1=self.fx_color[0], color2=self.fx_color[1],
                                               bright=st["bright"], speed=st["speed"], dir=DIRS[st["dir"]],
                                               rainbow=st["rainbow"])
-
-    def show_preview(self):
-        """Show / hide the preview panel below the buttons; it follows the controls while visible."""
-        self.preview_panel.setVisible(self.preview_panel.isHidden())
 
     def pick_fx(self, n):
         hx = self.ask_color(self.fx_color[n])
