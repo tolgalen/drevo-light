@@ -157,17 +157,23 @@ class PreviewPanel(QWidget):
         row.addWidget(self.btn)
         row.addStretch(1)
         lay.addLayout(row)
+        self._hidden_at = None
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.tick)
 
     def showEvent(self, e):
         super().showEvent(e)
+        if self._hidden_at is not None:  # time stood still while the tab was not visible
+            self.t0 += time.monotonic() - self._hidden_at
+            self._hidden_at = None
         self.view.fit()
         self.tick()
         self.timer.start(33)  # animate only while visible
 
     def hideEvent(self, e):
         self.timer.stop()
+        if self._hidden_at is None:
+            self._hidden_at = time.monotonic()
         super().hideEvent(e)
 
     def now(self):

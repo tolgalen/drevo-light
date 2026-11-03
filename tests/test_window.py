@@ -364,3 +364,20 @@ def test_effect_preview_colors_and_dialog(win, qapp):
     d.press("a")
     d.toggle()
     d.toggle()
+
+
+def test_effect_preview_stops_when_leaving_effects_tab(win, qapp):
+    from conftest import pump
+    p = win.preview_panel
+    win.show_page(2)
+    pump(qapp)
+    assert p.timer.isActive()
+    win.show_page(0)
+    pump(qapp)
+    assert not p.timer.isActive()
+    t = p.now()
+    import time
+    time.sleep(0.2)
+    win.show_page(2)
+    pump(qapp)
+    assert p.timer.isActive() and p.now() - t < 0.15  # animation clock did not run while away
