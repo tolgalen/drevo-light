@@ -1,0 +1,58 @@
+Drevo Light - Licencias de software de terceros / Third-party software licenses
+================================================================================
+
+Drevo Light se distribuye bajo GNU GPL v3 o posterior (ver LICENSE).
+Drevo Light is licensed under GNU GPL v3 or later (see LICENSE).
+
+Estos componentes NO se incluyen en este repositorio: se instalan con pip
+(requirements.txt) y conservan su propia licencia.
+These components are NOT bundled in this repository: they are installed with
+pip (requirements.txt) and keep their own licenses.
+
+--------------------------------------------------------------------------------
+PySide6 / Qt for Python  (6.x)
+  Licencia / License : LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
+  Web                : https://pyside.org  -  https://www.qt.io
+  Uso: interfaz gráfica / GUI toolkit. Se usa dinámicamente (LGPL).
+
+--------------------------------------------------------------------------------
+dtv2  (0.4.x)  -  development / test reference only
+  Autor / Author     : David Cobac
+  Licencia / License : CC BY-NC-SA (Creative Commons Reconocimiento-NoComercial-
+                       CompartirIgual / Attribution-NonCommercial-ShareAlike)
+  Web                : https://github.com/cobacdavid/dtv2
+  Uso: Drevo Light 1.1 ya NO depende de dtv2 en tiempo de ejecución: implementa el
+  protocolo por su cuenta (drevolight/proto.py). dtv2 solo se instala con
+  requirements-dev.txt para comprobar en las pruebas (tests/test_proto.py) que los
+  paquetes enviados son idénticos a los suyos. El protocolo del teclado lo documentó
+  el proyecto dtv2; gracias a David Cobac.
+  Use: Drevo Light 1.1 no longer depends on dtv2 at runtime: it implements the protocol
+  itself (drevolight/proto.py). dtv2 is only installed through requirements-dev.txt so
+  that the tests can verify our packets are byte-for-byte identical to its output.
+  The keyboard protocol was documented by the dtv2 project; thanks to David Cobac.
+
+--------------------------------------------------------------------------------
+hidapi (cython-hidapi)  (0.15.x)
+  Licencia / License : BSD o GPL-3.0 (doble licencia / dual-licensed)
+  Web                : https://github.com/trezor/cython-hidapi
+  Uso: acceso HID al teclado / HID access.
+
+--------------------------------------------------------------------------------
+Lucide icons  (iconos de la barra lateral / sidebar icons: assets/icons/*.svg)
+  Licencia / License : ISC License
+  Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part
+  of Feather (MIT). All other copyright (c) for Lucide are held by Lucide
+  Contributors 2022.
+  Web                : https://lucide.dev
+
+  Permission to use, copy, modify, and/or distribute this software for any
+  purpose with or without fee is hereby granted, provided that the above
+  copyright notice and this permission notice appear in all copies.
+
+  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+  PERFORMANCE OF THIS SOFTWARE.

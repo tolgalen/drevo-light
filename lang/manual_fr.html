@@ -1,0 +1,104 @@
+<h1>Drevo Light — Manuel d'utilisation</h1>
+<p>Drevo Light contrôle l'éclairage du clavier <b>Drevo Tyrfing V2</b> (USB 0416:a0f8) : couleurs par touche, par groupe de touches et effets. Ce manuel explique chaque partie de l'application.</p>
+
+<h2>1. Premiers pas</h2>
+<ul>
+<li>Branchez le clavier en USB. Le panneau <b>État du clavier</b> (en haut) indique s'il est détecté : point vert = connecté avec accès, jaune = détecté sans accès, rouge = non détecté.</li>
+<li>Sous Linux, copiez <code>99-drevo-tyrfing.rules</code> dans <code>/etc/udev/rules.d/</code> et exécutez <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> pour obtenir les droits d'accès.</li>
+<li>Vous pouvez aussi utiliser <b>Fichier → Installer les règles udev (Linux)…</b>, qui les installe en demandant le mot de passe administrateur.</li>
+<li>Fermez le logiciel Drevo officiel : il utilise le même canal et bloque l'accès.</li>
+<li><b>Interface : Automatique</b> suffit généralement. <b>Diagnostic USB</b> liste les interfaces HID détectées si vous devez en choisir une autre.</li>
+</ul>
+
+<h2>2. La fenêtre</h2>
+<ul>
+<li><b>Barre de menus :</b> Fichier, Profils, Thème, Langue et Aide. La taille du clavier (par exemple « TKL 88 TOUCHES ») s'affiche à droite.</li>
+<li><b>État du clavier :</b> connexion, dernière commande, sélecteur d'interface et boutons Re-détecter, Diagnostic USB et Vérifier.</li>
+<li><b>Barre latérale :</b> les trois pages de travail — <b>Clavier</b>, <b>Couleurs</b> et <b>Effets</b>.</li>
+<li><b>Pied de page :</b> messages d'état de la dernière action.</li>
+</ul>
+
+<h2>3. Page Clavier (éditeur visuel)</h2>
+<p>C'est l'éditeur principal. Il affiche un clavier où vous choisissez des touches et les colorez. Ce que vous voyez est un <b>aperçu</b> : rien n'arrive au vrai clavier tant que vous n'appuyez pas sur <b>Appliquer au clavier</b>. Au démarrage, l'éditeur part d'un clavier éteint.</p>
+
+<h3>Disposition et taille</h3>
+<p>Choisissez la disposition (US ANSI ; UK, ES, DE, FR et IT en ISO) et la taille (TKL ou Complet). Seuls le dessin et les légendes changent : les couleurs sont enregistrées selon la position physique de chaque touche, elles sont donc conservées quand vous changez de disposition.</p>
+
+<h3>Sélectionner des touches</h3>
+<ul>
+<li><b>Clic sur une touche :</b> la sélectionne ou la retire de la sélection.</li>
+<li><b>Glisser :</b> trace un rectangle et ajoute à la sélection toutes les touches touchées. Glissez plusieurs fois pour cumuler <b>plusieurs zones</b>.</li>
+<li><b>Ctrl + glisser :</b> inverse les touches de la zone (retire celles déjà sélectionnées, ajoute les autres).</li>
+<li><b>Maj + glisser ou clic :</b> remplace la sélection par la nouvelle.</li>
+<li><b>Clic sur le fond :</b> efface la sélection. <b>Ctrl+A</b> sélectionne toutes les touches.</li>
+<li>Boutons <b>Toutes</b>, <b>Aucune</b>, <b>Inverser</b> et ceux des groupes (Lettres, Chiffres, Touches F, Modificateurs, Édition, Flèches).</li>
+</ul>
+
+<h3>Colorer</h3>
+<p>Choisissez une couleur avec la pastille de couleur puis appuyez sur <b>Colorer la sélection</b>, ou appuyez sur une couleur prédéfinie (elles colorent directement). <b>Effacer la couleur</b> remet les touches sélectionnées à la couleur de base.</p>
+
+<h3>Envoyer au clavier et effacer</h3>
+<ul>
+<li><b>Appliquer au clavier :</b> envoie la couleur de base, les groupes et les touches individuelles.</li>
+<li><b>Éteindre :</b> éteint tout l'éclairage.</li>
+<li><b>Réinitialiser le clavier :</b> vide l'éditeur et éteint l'éclairage du clavier (demande confirmation).</li>
+<li><b>Vider l'éditeur :</b> supprime toutes les sélections et couleurs de l'éditeur, <b>sans toucher au vrai clavier</b>.</li>
+</ul>
+
+<h2>4. Page Couleurs</h2>
+<ul>
+<li><b>1. Couleur de tout le clavier :</b> couleur de base des touches sans autre couleur.</li>
+<li><b>2. Couleurs par groupe :</b> cochez un groupe (Lettres, Chiffres, Touches F…) et choisissez sa couleur.</li>
+<li><b>3. Touches individuelles :</b> saisissez le nom de la touche (<code>esc</code>, <code>space</code>, <code>enter</code>, <code>w</code>, <code>f5</code>…), choisissez une couleur et appuyez sur <b>Ajouter</b>. Le tableau liste les touches colorées ; <b>Retirer</b> supprime celles sélectionnées.</li>
+<li><b>Appliquer les couleurs</b> envoie tout au clavier. Priorité : touche individuelle &gt; groupe &gt; couleur de base.</li>
+</ul>
+
+<h2>5. Page Effets</h2>
+<p>Les effets sont enregistrés dans le clavier lui-même et restent actifs après la fermeture de l'application. Choisissez l'effet (Statique, Respiration, Radar, Flux, Mémoire), les couleurs 1 et 2, la luminosité, la vitesse, l'arc-en-ciel et la direction (Flux uniquement), puis appuyez sur <b>Appliquer l'effet</b>. Pour revenir aux couleurs par touche, utilisez <b>Appliquer au clavier</b>.</p>
+
+<h2>6. Édition avancée</h2>
+<ul>
+<li><b>Annuler / Rétablir</b> (menu Édition) : chaque changement de couleur peut être annulé, y compris « Vider l'éditeur ». Le titre de la fenêtre affiche un astérisque (*) lorsque des modifications ne sont pas enregistrées dans un profil.</li>
+<li><b>Copier et coller la couleur :</b> copie la couleur de la première touche sélectionnée et colle-la sur d'autres touches.</li>
+<li><b>Dégradé… :</b> remplit la sélection avec un mélange de deux couleurs ou un arc-en-ciel, à l'horizontale ou à la verticale.</li>
+<li><b>Récents :</b> les dernières couleurs utilisées apparaissent sous forme de pastilles ; appuyez sur l'une d'elles pour colorer la sélection. La boîte de couleur conserve aussi vos « couleurs personnalisées » entre les sessions.</li>
+<li><b>Rangées :</b> les boutons numérotés sélectionnent une rangée entière du clavier.</li>
+<li><b>Appliquer en direct :</b> cochée, chaque modification est envoyée automatiquement au clavier, sans appuyer sur « Appliquer au clavier ».</li>
+<li><b>Ajouter la sélection</b> (page Couleurs) ajoute les touches sélectionnées avec la couleur choisie ; le champ du nom se complète automatiquement et signale une touche inexistante.</li>
+<li>Les envois au clavier se font en arrière-plan : la fenêtre ne se bloque pas, même si l'USB est lent.</li>
+</ul>
+
+<h2>7. Profils</h2>
+<ul>
+<li>Le menu <b>Profils</b> propose <b>20 emplacements</b>. Choisir un emplacement nommé charge ce profil dans l'éditeur ; il <b>n'est pas envoyé au clavier</b> tant que vous n'appuyez pas sur « Appliquer au clavier ».</li>
+<li><b>Enregistrer le profil actuel dans…</b> permet de choisir un emplacement et un nom (confirmation en cas d'écrasement).</li>
+<li><b>Renommer</b> et <b>Supprimer</b> agissent sur les emplacements contenant un profil.</li>
+<li><b>Importer depuis un fichier…</b> et <b>Exporter vers un fichier…</b> utilisent des fichiers .json pour transférer des profils vers un autre ordinateur.</li>
+<li>Un profil enregistre les couleurs (base, groupes activés et touches individuelles), les réglages de l'effet, le dernier mode appliqué (couleurs ou effet) et la disposition du clavier ; il n'enregistre ni le thème ni la langue. Ils sont stockés dans <code>~/.config/drevo-light/profiles.json</code>.</li>
+<li><b>Gérer les profils…</b> ouvre une fenêtre avec les 20 emplacements et une miniature de chaque profil (double-clic pour le charger).</li>
+<li>Les options <b>Appliquer au clavier au chargement d'un profil</b> et <b>Appliquer le dernier profil au démarrage</b> envoient le profil au clavier automatiquement.</li>
+<li>Si l'éditeur contient des modifications non enregistrées, l'application demande confirmation avant de les remplacer lors du chargement ou de l'import d'un profil.</li>
+</ul>
+
+<h2>8. Thème et langue</h2>
+<p>Le menu <b>Thème</b> propose Système, Clair, Sombre, Bleu foncé et Drevo. Le menu <b>Langue</b> propose Español, English, Français, Italiano, Deutsch et Português. Les deux sont mémorisés. Pour ajouter une langue, copiez <code>lang/en.xml</code> vers <code>lang/xx.xml</code> et traduisez-le.</p>
+
+<h2>9. Dépannage</h2>
+<ul>
+<li><b>Clavier NON détecté :</b> vérifiez le câble USB et fermez le logiciel Drevo officiel.</li>
+<li><b>Détecté, mais sans accès :</b> sous Linux, les droits udev manquent (voir « Premiers pas ») ; sur tout système, fermez le logiciel officiel.</li>
+<li><b>Erreur à l'application :</b> ouvrez <b>Diagnostic USB</b>, choisissez une autre interface dans le sélecteur « Interface » et réessayez.</li>
+<li><b>La couleur ne correspond pas :</b> l'aperçu est approximatif ; la luminosité réelle dépend du clavier.</li>
+</ul>
+
+<h2>10. Raccourcis clavier</h2>
+<ul>
+<li><b>Ctrl+A :</b> sélectionner toutes les touches.</li>
+<li><b>Ctrl+Z / Ctrl+Y :</b> annuler / rétablir.</li>
+<li><b>Ctrl+C / Ctrl+V :</b> copier / coller la couleur des touches sélectionnées.</li>
+<li><b>F1 :</b> ouvrir ce manuel.</li>
+<li><b>Ctrl+Q :</b> quitter.</li>
+</ul>
+
+<h2>11. Licence</h2>
+<p>Drevo Light est un logiciel libre sous licence GNU GPL v3 ou ultérieure. Voir <b>Aide → Licence GPL-3.0…</b> et <b>Licences tierces…</b>.</p>

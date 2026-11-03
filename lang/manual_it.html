@@ -1,0 +1,104 @@
+<h1>Drevo Light — Manuale utente</h1>
+<p>Drevo Light controlla l'illuminazione della tastiera <b>Drevo Tyrfing V2</b> (USB 0416:a0f8): colori per tasto, per gruppi di tasti ed effetti. Questo manuale spiega ogni parte dell'applicazione.</p>
+
+<h2>1. Primi passi</h2>
+<ul>
+<li>Collega la tastiera via USB. Il pannello <b>Stato della tastiera</b> (in alto) indica se viene rilevata: punto verde = connessa con accesso, giallo = rilevata ma senza accesso, rosso = non rilevata.</li>
+<li>Su Linux copia <code>99-drevo-tyrfing.rules</code> in <code>/etc/udev/rules.d/</code> ed esegui <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> per ottenere i permessi di accesso.</li>
+<li>Puoi anche usare <b>File → Installa le regole udev (Linux)…</b>, che le installa chiedendo la password di amministratore.</li>
+<li>Chiudi il software ufficiale Drevo: usa lo stesso canale e blocca l'accesso.</li>
+<li><b>Interfaccia: Automatica</b> di solito basta. <b>Diagnostica USB</b> elenca le interfacce HID rilevate nel caso tu debba sceglierne un'altra.</li>
+</ul>
+
+<h2>2. La finestra</h2>
+<ul>
+<li><b>Barra dei menu:</b> File, Profili, Tema, Lingua e Aiuto. A destra è mostrata la dimensione della tastiera (ad esempio «TKL 88 TASTI»).</li>
+<li><b>Stato della tastiera:</b> connessione, ultimo comando, selettore di interfaccia e pulsanti Rileva di nuovo, Diagnostica USB e Verifica ora.</li>
+<li><b>Barra laterale:</b> le tre pagine di lavoro — <b>Tastiera</b>, <b>Colori</b> ed <b>Effetti</b>.</li>
+<li><b>Piè di pagina:</b> messaggi di stato dell'ultima azione.</li>
+</ul>
+
+<h2>3. Pagina Tastiera (editor visuale)</h2>
+<p>È l'editor principale. Mostra una tastiera in cui scegli i tasti e li colori. Quello che vedi è un'<b>anteprima</b>: nulla arriva alla tastiera reale finché non premi <b>Applica alla tastiera</b>. All'avvio l'editor parte da una tastiera spenta.</p>
+
+<h3>Layout e dimensione</h3>
+<p>Scegli il layout (US ANSI; UK, ES, DE, FR e IT in ISO) e la dimensione (TKL o Completa). Cambiano solo il disegno e le legende: i colori sono salvati per posizione fisica di ogni tasto, quindi restano anche cambiando layout.</p>
+
+<h3>Selezionare i tasti</h3>
+<ul>
+<li><b>Clic su un tasto:</b> lo seleziona o lo toglie dalla selezione.</li>
+<li><b>Trascina:</b> disegna un rettangolo e aggiunge alla selezione tutti i tasti toccati. Trascina più volte per accumulare <b>più aree</b>.</li>
+<li><b>Ctrl + trascina:</b> alterna i tasti dell'area (toglie quelli già selezionati, aggiunge gli altri).</li>
+<li><b>Maiusc + trascina o clic:</b> sostituisce la selezione con la nuova.</li>
+<li><b>Clic sullo sfondo:</b> cancella la selezione. <b>Ctrl+A</b> seleziona tutti i tasti.</li>
+<li>Pulsanti <b>Tutti</b>, <b>Nessuno</b>, <b>Inverti</b> e quelli dei gruppi (Lettere, Numeri, Tasti F, Modificatori, Modifica, Frecce).</li>
+</ul>
+
+<h3>Colorare</h3>
+<p>Scegli un colore con il riquadro colore e premi <b>Colora selezione</b>, oppure premi uno dei colori predefiniti (colorano direttamente). <b>Rimuovi colore</b> riporta i tasti selezionati al colore di base.</p>
+
+<h3>Inviare alla tastiera e pulire</h3>
+<ul>
+<li><b>Applica alla tastiera:</b> invia il colore di base, i gruppi e i tasti singoli.</li>
+<li><b>Spegni luci:</b> spegne tutta l'illuminazione.</li>
+<li><b>Reimposta tastiera:</b> svuota l'editor e spegne l'illuminazione della tastiera (chiede conferma).</li>
+<li><b>Svuota editor:</b> rimuove tutte le selezioni e i colori dall'editor, <b>senza toccare la tastiera reale</b>.</li>
+</ul>
+
+<h2>4. Pagina Colori</h2>
+<ul>
+<li><b>1. Colore dell'intera tastiera:</b> colore di base dei tasti senza altro colore.</li>
+<li><b>2. Colori per gruppo:</b> spunta un gruppo (Lettere, Numeri, Tasti F…) e scegli il suo colore.</li>
+<li><b>3. Tasti singoli:</b> scrivi il nome del tasto (<code>esc</code>, <code>space</code>, <code>enter</code>, <code>w</code>, <code>f5</code>…), scegli un colore e premi <b>Aggiungi</b>. La tabella elenca i tasti colorati; <b>Rimuovi</b> elimina quelli selezionati.</li>
+<li><b>Applica colori</b> invia tutto alla tastiera. Priorità: tasto singolo &gt; gruppo &gt; colore di base.</li>
+</ul>
+
+<h2>5. Pagina Effetti</h2>
+<p>Gli effetti sono salvati nella tastiera stessa e restano attivi anche dopo aver chiuso l'applicazione. Scegli l'effetto (Statico, Respirazione, Radar, Flusso, Memoria), i colori 1 e 2, la luminosità, la velocità, l'arcobaleno e la direzione (solo Flusso), poi premi <b>Applica effetto</b>. Per tornare ai colori per tasto usa <b>Applica alla tastiera</b>.</p>
+
+<h2>6. Modifica avanzata</h2>
+<ul>
+<li><b>Annulla / Ripeti</b> (menu Modifica): ogni cambio di colore si può annullare, compreso «Svuota editor». Il titolo della finestra mostra un asterisco (*) quando ci sono modifiche non salvate in un profilo.</li>
+<li><b>Copia e incolla colore:</b> copia il colore del primo tasto selezionato e incollalo su altri tasti.</li>
+<li><b>Sfumatura…:</b> riempie la selezione con una miscela di due colori o con un arcobaleno, in orizzontale o in verticale.</li>
+<li><b>Recenti:</b> gli ultimi colori usati compaiono come campioni; premine uno per colorare la selezione. La finestra dei colori conserva anche i tuoi «colori personalizzati» tra le sessioni.</li>
+<li><b>Righe:</b> i pulsanti numerati selezionano un'intera riga della tastiera.</li>
+<li><b>Applica dal vivo:</b> con questa casella ogni modifica viene inviata automaticamente alla tastiera, senza premere «Applica alla tastiera».</li>
+<li><b>Aggiungi selezione</b> (pagina Colori) aggiunge i tasti selezionati con il colore scelto; il campo del nome si completa da solo e avvisa se il tasto non esiste.</li>
+<li>Gli invii alla tastiera avvengono in background: la finestra non si blocca anche se l'USB è lenta.</li>
+</ul>
+
+<h2>7. Profili</h2>
+<ul>
+<li>Il menu <b>Profili</b> offre <b>20 posizioni</b>. Scegliere una posizione con nome carica quel profilo nell'editor; <b>non viene inviato alla tastiera</b> finché non premi «Applica alla tastiera».</li>
+<li><b>Salva il profilo corrente in…</b> permette di scegliere posizione e nome (chiede conferma se sovrascrivi).</li>
+<li><b>Rinomina</b> ed <b>Elimina</b> agiscono sulle posizioni che contengono un profilo.</li>
+<li><b>Importa da file…</b> ed <b>Esporta su file…</b> usano file .json per portare i profili su un altro computer.</li>
+<li>Un profilo salva i colori (base, gruppi attivi e tasti singoli), le impostazioni dell'effetto, l'ultima modalità applicata (colori o effetto) e il layout della tastiera; non salva tema né lingua. Sono salvati in <code>~/.config/drevo-light/profiles.json</code>.</li>
+<li><b>Gestisci profili…</b> apre una finestra con le 20 posizioni e una miniatura di ogni profilo (doppio clic per caricarlo).</li>
+<li>Le opzioni <b>Applica alla tastiera al caricamento di un profilo</b> e <b>Applica l'ultimo profilo all'avvio</b> inviano il profilo alla tastiera automaticamente.</li>
+<li>Se l'editor contiene modifiche non salvate, l'applicazione chiede conferma prima di sostituirle quando carichi o importi un profilo.</li>
+</ul>
+
+<h2>8. Tema e lingua</h2>
+<p>Il menu <b>Tema</b> offre Sistema, Chiaro, Scuro, Blu scuro e Drevo. Il menu <b>Lingua</b> offre Español, English, Français, Italiano, Deutsch e Português. Entrambi vengono ricordati. Per aggiungere una lingua copia <code>lang/en.xml</code> in <code>lang/xx.xml</code> e traducilo.</p>
+
+<h2>9. Risoluzione dei problemi</h2>
+<ul>
+<li><b>Tastiera NON rilevata:</b> controlla il cavo USB e chiudi il software ufficiale Drevo.</li>
+<li><b>Rilevata, ma senza accesso:</b> su Linux mancano i permessi udev (vedi «Primi passi»); su qualsiasi sistema, chiudi il software ufficiale.</li>
+<li><b>Errore durante l'applicazione:</b> apri <b>Diagnostica USB</b>, scegli un'altra interfaccia nel selettore «Interfaccia» e riprova.</li>
+<li><b>Il colore non corrisponde:</b> l'anteprima è approssimata; la luminosità reale dipende dalla tastiera.</li>
+</ul>
+
+<h2>10. Scorciatoie da tastiera</h2>
+<ul>
+<li><b>Ctrl+A:</b> seleziona tutti i tasti.</li>
+<li><b>Ctrl+Z / Ctrl+Y:</b> annulla / ripeti.</li>
+<li><b>Ctrl+C / Ctrl+V:</b> copia / incolla il colore dei tasti selezionati.</li>
+<li><b>F1:</b> apri questo manuale.</li>
+<li><b>Ctrl+Q:</b> esci.</li>
+</ul>
+
+<h2>11. Licenza</h2>
+<p>Drevo Light è software libero con licenza GNU GPL v3 o successiva. Vedi <b>Aiuto → Licenza GPL-3.0…</b> e <b>Licenze di terze parti…</b>.</p>

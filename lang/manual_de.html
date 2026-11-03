@@ -1,0 +1,104 @@
+<h1>Drevo Light — Benutzerhandbuch</h1>
+<p>Drevo Light steuert die Beleuchtung der Tastatur <b>Drevo Tyrfing V2</b> (USB 0416:a0f8): Farben pro Taste, pro Tastengruppe und Effekte. Dieses Handbuch erklärt jeden Teil der Anwendung.</p>
+
+<h2>1. Erste Schritte</h2>
+<ul>
+<li>Schließe die Tastatur per USB an. Das Feld <b>Tastaturstatus</b> (oben) zeigt, ob sie erkannt wird: grüner Punkt = verbunden mit Zugriff, gelb = erkannt, aber kein Zugriff, rot = nicht erkannt.</li>
+<li>Unter Linux kopiere <code>99-drevo-tyrfing.rules</code> nach <code>/etc/udev/rules.d/</code> und führe <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> aus, um Zugriffsrechte zu erhalten.</li>
+<li>Du kannst auch <b>Datei → udev-Regeln installieren (Linux)…</b> verwenden; dabei wird das Administratorpasswort abgefragt.</li>
+<li>Schließe die offizielle Drevo-Software: Sie nutzt denselben Kanal und blockiert den Zugriff.</li>
+<li><b>Schnittstelle: Automatisch</b> genügt meist. <b>USB-Diagnose</b> listet die erkannten HID-Schnittstellen auf, falls du eine andere wählen musst.</li>
+</ul>
+
+<h2>2. Das Fenster</h2>
+<ul>
+<li><b>Menüleiste:</b> Datei, Profile, Design, Sprache und Hilfe. Rechts steht die Tastaturgröße (z. B. „TKL 88 TASTEN“).</li>
+<li><b>Tastaturstatus:</b> Verbindung, letzter Befehl, Schnittstellenauswahl und die Schaltflächen Neu erkennen, USB-Diagnose und Jetzt prüfen.</li>
+<li><b>Seitenleiste:</b> die drei Arbeitsseiten — <b>Tastatur</b>, <b>Farben</b> und <b>Effekte</b>.</li>
+<li><b>Fußzeile:</b> Statusmeldungen zur letzten Aktion.</li>
+</ul>
+
+<h2>3. Seite Tastatur (visueller Editor)</h2>
+<p>Dies ist der Haupteditor. Er zeigt eine Tastatur, auf der du Tasten auswählst und einfärbst. Was du siehst, ist eine <b>Vorschau</b>: Nichts erreicht die echte Tastatur, bis du <b>Auf Tastatur anwenden</b> drückst. Beim Start beginnt der Editor mit einer unbeleuchteten Tastatur.</p>
+
+<h3>Layout und Größe</h3>
+<p>Wähle das Layout (US ANSI; UK, ES, DE, FR und IT als ISO) und die Größe (TKL oder Vollständig). Nur Zeichnung und Beschriftung ändern sich: Die Farben werden nach der physischen Position jeder Taste gespeichert und bleiben beim Layoutwechsel erhalten.</p>
+
+<h3>Tasten auswählen</h3>
+<ul>
+<li><b>Klick auf eine Taste:</b> wählt sie aus oder entfernt sie aus der Auswahl.</li>
+<li><b>Ziehen:</b> zeichnet ein Rechteck und fügt alle berührten Tasten zur Auswahl hinzu. Mehrfaches Ziehen sammelt <b>mehrere Bereiche</b>.</li>
+<li><b>Strg + Ziehen:</b> schaltet die Tasten im Bereich um (entfernt ausgewählte, fügt die übrigen hinzu).</li>
+<li><b>Umschalt + Ziehen oder Klick:</b> ersetzt die Auswahl durch die neue.</li>
+<li><b>Klick auf den Hintergrund:</b> hebt die Auswahl auf. <b>Strg+A</b> wählt alle Tasten aus.</li>
+<li>Schaltflächen <b>Alle</b>, <b>Keine</b>, <b>Umkehren</b> und die Gruppen (Buchstaben, Ziffern, F-Tasten, Modifikatoren, Bearbeiten, Pfeile).</li>
+</ul>
+
+<h3>Einfärben</h3>
+<p>Wähle eine Farbe über das Farbfeld und drücke <b>Auswahl färben</b>, oder drücke eine der vordefinierten Farben (sie färben direkt). <b>Farbe entfernen</b> setzt die ausgewählten Tasten auf die Grundfarbe zurück.</p>
+
+<h3>An die Tastatur senden und leeren</h3>
+<ul>
+<li><b>Auf Tastatur anwenden:</b> sendet Grundfarbe, Gruppen und einzelne Tasten.</li>
+<li><b>Licht aus:</b> schaltet die gesamte Beleuchtung aus.</li>
+<li><b>Tastatur zurücksetzen:</b> leert den Editor und schaltet die Tastaturbeleuchtung aus (mit Bestätigung).</li>
+<li><b>Editor leeren:</b> entfernt alle Auswahlen und Farben im Editor, <b>ohne die echte Tastatur zu verändern</b>.</li>
+</ul>
+
+<h2>4. Seite Farben</h2>
+<ul>
+<li><b>1. Farbe der gesamten Tastatur:</b> Grundfarbe für Tasten ohne andere Farbe.</li>
+<li><b>2. Farben nach Tastengruppe:</b> Gruppe ankreuzen (Buchstaben, Ziffern, F-Tasten…) und Farbe wählen.</li>
+<li><b>3. Einzelne Tasten:</b> Tastennamen eingeben (<code>esc</code>, <code>space</code>, <code>enter</code>, <code>w</code>, <code>f5</code>…), Farbe wählen und <b>Hinzufügen</b> drücken. Die Tabelle listet die gefärbten Tasten; <b>Entfernen</b> löscht die ausgewählten.</li>
+<li><b>Farben anwenden</b> sendet alles an die Tastatur. Priorität: einzelne Taste &gt; Gruppe &gt; Grundfarbe.</li>
+</ul>
+
+<h2>5. Seite Effekte</h2>
+<p>Effekte werden in der Tastatur selbst gespeichert und bleiben nach dem Schließen der Anwendung aktiv. Wähle den Effekt (Statisch, Atmen, Radar, Fluss, Gedächtnis), Farbe 1 und 2, Helligkeit, Geschwindigkeit, Regenbogen und Richtung (nur Fluss) und drücke <b>Effekt anwenden</b>. Um zu Tastenfarben zurückzukehren, nutze <b>Auf Tastatur anwenden</b>.</p>
+
+<h2>6. Erweitertes Bearbeiten</h2>
+<ul>
+<li><b>Rückgängig / Wiederholen</b> (Menü Bearbeiten): Jede Farbänderung lässt sich zurücknehmen, auch „Editor leeren“. Der Fenstertitel zeigt ein Sternchen (*), wenn Änderungen nicht in einem Profil gespeichert sind.</li>
+<li><b>Farbe kopieren und einfügen:</b> kopiert die Farbe der ersten ausgewählten Taste und fügt sie auf anderen Tasten ein.</li>
+<li><b>Farbverlauf…:</b> füllt die Auswahl mit einer Mischung aus zwei Farben oder einem Regenbogen, horizontal oder vertikal.</li>
+<li><b>Zuletzt:</b> Die zuletzt verwendeten Farben erscheinen als Farbfelder; ein Klick färbt die Auswahl. Der Farbdialog behält außerdem deine „benutzerdefinierten Farben“ zwischen den Sitzungen.</li>
+<li><b>Reihen:</b> Die nummerierten Schaltflächen wählen eine ganze Tastaturreihe aus.</li>
+<li><b>Live anwenden:</b> Bei aktiviertem Kontrollkästchen wird jede Änderung automatisch an die Tastatur gesendet, ohne „Auf Tastatur anwenden“ zu drücken.</li>
+<li><b>Auswahl hinzufügen</b> (Seite Farben) fügt die ausgewählten Tasten mit der gewählten Farbe hinzu; das Namensfeld vervollständigt automatisch und warnt, wenn die Taste nicht existiert.</li>
+<li>Befehle werden im Hintergrund an die Tastatur gesendet: Das Fenster friert nicht ein, selbst wenn USB langsam ist.</li>
+</ul>
+
+<h2>7. Profile</h2>
+<ul>
+<li>Das Menü <b>Profile</b> bietet <b>20 Plätze</b>. Ein benannter Platz lädt das Profil in den Editor; es wird <b>nicht an die Tastatur gesendet</b>, bis du „Auf Tastatur anwenden“ drückst.</li>
+<li><b>Aktuelles Profil speichern in…</b> lässt dich Platz und Namen wählen (mit Bestätigung beim Überschreiben).</li>
+<li><b>Umbenennen</b> und <b>Löschen</b> wirken auf Plätze mit einem Profil.</li>
+<li><b>Aus Datei importieren…</b> und <b>In Datei exportieren…</b> nutzen .json-Dateien, um Profile auf einen anderen Computer zu übertragen.</li>
+<li>Ein Profil speichert die Farben (Grundfarbe, aktive Gruppen und einzelne Tasten), die Effekteinstellungen, den zuletzt angewendeten Modus (Farben oder Effekt) und das Tastaturlayout; Design und Sprache werden nicht gespeichert. Sie liegen in <code>~/.config/drevo-light/profiles.json</code>.</li>
+<li><b>Profile verwalten…</b> öffnet ein Fenster mit den 20 Plätzen und einer Vorschau jedes Profils (Doppelklick zum Laden).</li>
+<li>Die Optionen <b>Beim Laden eines Profils auf Tastatur anwenden</b> und <b>Letztes Profil beim Start anwenden</b> senden das Profil automatisch an die Tastatur.</li>
+<li>Enthält der Editor ungespeicherte Änderungen, fragt die Anwendung vor dem Ersetzen nach, wenn du ein Profil lädst oder importierst.</li>
+</ul>
+
+<h2>8. Design und Sprache</h2>
+<p>Das Menü <b>Design</b> bietet System, Hell, Dunkel, Dunkelblau und Drevo. Das Menü <b>Sprache</b> bietet Español, English, Français, Italiano, Deutsch und Português. Beides wird gespeichert. Um eine Sprache hinzuzufügen, kopiere <code>lang/en.xml</code> nach <code>lang/xx.xml</code> und übersetze sie.</p>
+
+<h2>9. Fehlerbehebung</h2>
+<ul>
+<li><b>Tastatur NICHT erkannt:</b> USB-Kabel prüfen und die offizielle Drevo-Software schließen.</li>
+<li><b>Erkannt, aber kein Zugriff:</b> Unter Linux fehlen die udev-Rechte (siehe „Erste Schritte“); auf jedem System die offizielle Software schließen.</li>
+<li><b>Fehler beim Anwenden:</b> <b>USB-Diagnose</b> öffnen, eine andere Schnittstelle wählen und erneut versuchen.</li>
+<li><b>Farbe stimmt nicht überein:</b> Die Vorschau ist ungefähr; die echte Helligkeit hängt von der Tastatur ab.</li>
+</ul>
+
+<h2>10. Tastenkürzel</h2>
+<ul>
+<li><b>Strg+A:</b> alle Tasten auswählen.</li>
+<li><b>Strg+Z / Strg+Y:</b> rückgängig / wiederholen.</li>
+<li><b>Strg+C / Strg+V:</b> Farbe der ausgewählten Tasten kopieren / einfügen.</li>
+<li><b>F1:</b> dieses Handbuch öffnen.</li>
+<li><b>Strg+Q:</b> beenden.</li>
+</ul>
+
+<h2>11. Lizenz</h2>
+<p>Drevo Light ist freie Software unter der GNU GPL v3 oder später. Siehe <b>Hilfe → GPL-3.0-Lizenz…</b> und <b>Lizenzen von Drittanbietern…</b>.</p>

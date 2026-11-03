@@ -1,0 +1,104 @@
+<h1>Drevo Light — Manual do utilizador</h1>
+<p>O Drevo Light controla a iluminação do teclado <b>Drevo Tyrfing V2</b> (USB 0416:a0f8): cores por tecla, por grupos de teclas e efeitos. Este manual explica cada parte da aplicação.</p>
+
+<h2>1. Primeiros passos</h2>
+<ul>
+<li>Ligue o teclado por USB. O painel <b>Estado do teclado</b> (em cima) indica se é detetado: ponto verde = ligado com acesso, amarelo = detetado mas sem acesso, vermelho = não detetado.</li>
+<li>No Linux copie <code>99-drevo-tyrfing.rules</code> para <code>/etc/udev/rules.d/</code> e execute <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> para obter permissões de acesso.</li>
+<li>Também pode usar <b>Ficheiro → Instalar regras udev (Linux)…</b>, que as instala pedindo a palavra-passe de administrador.</li>
+<li>Feche o software oficial da Drevo: usa o mesmo canal e bloqueia o acesso.</li>
+<li><b>Interface: Automática</b> costuma bastar. O <b>Diagnóstico USB</b> mostra as interfaces HID detetadas, caso precise de escolher outra.</li>
+</ul>
+
+<h2>2. A janela</h2>
+<ul>
+<li><b>Barra de menus:</b> Ficheiro, Perfis, Tema, Idioma e Ajuda. À direita é mostrado o tamanho do teclado (por exemplo «TKL 88 TECLAS»).</li>
+<li><b>Estado do teclado:</b> ligação, último comando, seletor de interface e os botões Detetar novamente, Diagnóstico USB e Verificar agora.</li>
+<li><b>Barra lateral:</b> as três páginas de trabalho — <b>Teclado</b>, <b>Cores</b> e <b>Efeitos</b>.</li>
+<li><b>Rodapé:</b> mensagens de estado da última ação.</li>
+</ul>
+
+<h2>3. Página Teclado (editor visual)</h2>
+<p>É o editor principal. Mostra um teclado onde escolhe teclas e as pinta. O que vê é uma <b>pré-visualização</b>: nada chega ao teclado real até premir <b>Aplicar ao teclado</b>. Ao iniciar, o editor parte de um teclado sem luz.</p>
+
+<h3>Disposição e tamanho</h3>
+<p>Escolha a disposição (US ANSI; UK, ES, DE, FR e IT em ISO) e o tamanho (TKL ou Completo). Só mudam o desenho e as legendas: as cores guardam-se pela posição física de cada tecla, por isso mantêm-se ao mudar de disposição.</p>
+
+<h3>Selecionar teclas</h3>
+<ul>
+<li><b>Clique numa tecla:</b> seleciona-a ou retira-a da seleção.</li>
+<li><b>Arrastar:</b> desenha um retângulo e adiciona à seleção todas as teclas que toque. Arraste várias vezes para acumular <b>várias áreas</b>.</li>
+<li><b>Ctrl + arrastar:</b> alterna as teclas da área (retira as já selecionadas e adiciona as restantes).</li>
+<li><b>Shift + arrastar ou clique:</b> substitui a seleção pela nova.</li>
+<li><b>Clique no fundo:</b> limpa a seleção. <b>Ctrl+A</b> seleciona todas as teclas.</li>
+<li>Botões <b>Todas</b>, <b>Nenhuma</b>, <b>Inverter</b> e os de grupo (Letras, Números, Teclas F, Modificadoras, Edição, Setas).</li>
+</ul>
+
+<h3>Pintar</h3>
+<p>Escolha uma cor na caixa de cor e prima <b>Pintar seleção</b>, ou prima uma das cores predefinidas (pintam diretamente). <b>Remover cor</b> devolve as teclas selecionadas à cor base.</p>
+
+<h3>Enviar para o teclado e limpar</h3>
+<ul>
+<li><b>Aplicar ao teclado:</b> envia a cor base, os grupos e as teclas individuais.</li>
+<li><b>Apagar luzes:</b> desliga toda a iluminação.</li>
+<li><b>Repor teclado:</b> limpa o editor e desliga a iluminação do teclado (pede confirmação).</li>
+<li><b>Limpar editor:</b> remove todas as seleções e cores do editor, <b>sem tocar no teclado real</b>.</li>
+</ul>
+
+<h2>4. Página Cores</h2>
+<ul>
+<li><b>1. Cor de todo o teclado:</b> cor base das teclas sem outra cor.</li>
+<li><b>2. Cores por grupo:</b> marque um grupo (Letras, Números, Teclas F…) e escolha a sua cor.</li>
+<li><b>3. Teclas individuais:</b> escreva o nome da tecla (<code>esc</code>, <code>space</code>, <code>enter</code>, <code>w</code>, <code>f5</code>…), escolha uma cor e prima <b>Adicionar</b>. A tabela lista as teclas com cor; <b>Remover</b> elimina as selecionadas.</li>
+<li><b>Aplicar cores</b> envia tudo para o teclado. Prioridade: tecla individual &gt; grupo &gt; cor base.</li>
+</ul>
+
+<h2>5. Página Efeitos</h2>
+<p>Os efeitos guardam-se no próprio teclado e continuam ativos depois de fechar a aplicação. Escolha o efeito (Estático, Respiração, Radar, Fluxo, Memória), as cores 1 e 2, o brilho, a velocidade, o arco-íris e a direção (só em Fluxo) e prima <b>Aplicar efeito</b>. Para voltar às cores por tecla use <b>Aplicar ao teclado</b>.</p>
+
+<h2>6. Edição avançada</h2>
+<ul>
+<li><b>Anular / Refazer</b> (menu Editar): cada alteração de cor pode ser anulada, incluindo «Limpar editor». O título da janela mostra um asterisco (*) quando há alterações por guardar num perfil.</li>
+<li><b>Copiar e colar cor:</b> copia a cor da primeira tecla selecionada e cola-a noutras teclas.</li>
+<li><b>Gradiente…:</b> preenche a seleção com uma mistura de duas cores ou com um arco-íris, na horizontal ou na vertical.</li>
+<li><b>Recentes:</b> as últimas cores usadas aparecem como amostras; prima uma para pintar a seleção. A caixa de cores também guarda as suas «cores personalizadas» entre sessões.</li>
+<li><b>Linhas:</b> os botões numerados selecionam uma linha inteira do teclado.</li>
+<li><b>Aplicar em direto:</b> com esta caixa assinalada, cada alteração é enviada automaticamente ao teclado, sem premir «Aplicar ao teclado».</li>
+<li><b>Adicionar seleção</b> (página Cores) adiciona as teclas selecionadas com a cor escolhida; o campo do nome completa-se sozinho e avisa se a tecla não existe.</li>
+<li>Os envios ao teclado fazem-se em segundo plano: a janela não bloqueia mesmo que o USB seja lento.</li>
+</ul>
+
+<h2>7. Perfis</h2>
+<ul>
+<li>O menu <b>Perfis</b> oferece <b>20 posições</b>. Escolher uma posição com nome carrega esse perfil no editor; <b>não é enviado ao teclado</b> até premir «Aplicar ao teclado».</li>
+<li><b>Guardar o perfil atual em…</b> permite escolher posição e nome (pede confirmação se substituir).</li>
+<li><b>Mudar o nome</b> e <b>Eliminar</b> atuam sobre posições com perfil.</li>
+<li><b>Importar de ficheiro…</b> e <b>Exportar para ficheiro…</b> usam ficheiros .json para levar perfis para outro computador.</li>
+<li>Um perfil guarda as cores (base, grupos ativos e teclas individuais), as definições do efeito, o último modo aplicado (cores ou efeito) e a disposição do teclado; não guarda o tema nem o idioma. Ficam em <code>~/.config/drevo-light/profiles.json</code>.</li>
+<li><b>Gerir perfis…</b> abre uma janela com as 20 posições e uma miniatura de cada perfil (duplo clique para o carregar).</li>
+<li>As opções <b>Aplicar ao teclado ao carregar um perfil</b> e <b>Aplicar o último perfil ao iniciar</b> enviam o perfil ao teclado automaticamente.</li>
+<li>Se o editor tiver alterações por guardar, a aplicação pergunta antes de as substituir ao carregar ou importar um perfil.</li>
+</ul>
+
+<h2>8. Tema e idioma</h2>
+<p>O menu <b>Tema</b> oferece Sistema, Claro, Escuro, Azul escuro e Drevo. O menu <b>Idioma</b> oferece Español, English, Français, Italiano, Deutsch e Português. Ambos são memorizados. Para adicionar um idioma, copie <code>lang/en.xml</code> para <code>lang/xx.xml</code> e traduza-o.</p>
+
+<h2>9. Resolução de problemas</h2>
+<ul>
+<li><b>Teclado NÃO detetado:</b> verifique o cabo USB e feche o software oficial da Drevo.</li>
+<li><b>Detetado, mas sem acesso:</b> no Linux faltam as permissões udev (ver «Primeiros passos»); em qualquer sistema, feche o software oficial.</li>
+<li><b>Erro ao aplicar:</b> abra o <b>Diagnóstico USB</b>, escolha outra interface no seletor «Interface» e tente de novo.</li>
+<li><b>A cor não coincide:</b> a pré-visualização é aproximada; o brilho real depende do teclado.</li>
+</ul>
+
+<h2>10. Atalhos de teclado</h2>
+<ul>
+<li><b>Ctrl+A:</b> selecionar todas as teclas.</li>
+<li><b>Ctrl+Z / Ctrl+Y:</b> anular / refazer.</li>
+<li><b>Ctrl+C / Ctrl+V:</b> copiar / colar a cor das teclas selecionadas.</li>
+<li><b>F1:</b> abrir este manual.</li>
+<li><b>Ctrl+Q:</b> sair.</li>
+</ul>
+
+<h2>11. Licença</h2>
+<p>O Drevo Light é software livre sob a licença GNU GPL v3 ou posterior. Consulte <b>Ajuda → Licença GPL-3.0…</b> e <b>Licenças de terceiros…</b>.</p>

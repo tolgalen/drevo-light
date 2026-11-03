@@ -1,0 +1,104 @@
+<h1>Drevo Light — User manual</h1>
+<p>Drevo Light controls the lighting of the <b>Drevo Tyrfing V2</b> keyboard (USB 0416:a0f8): per-key colors, key-group colors and effects. This manual explains every part of the application.</p>
+
+<h2>1. Getting started</h2>
+<ul>
+<li>Connect the keyboard by USB. The <b>Keyboard status</b> panel (top) shows whether it is detected: green dot = connected with access, yellow = detected but no access, red = not detected.</li>
+<li>On Linux, copy <code>99-drevo-tyrfing.rules</code> to <code>/etc/udev/rules.d/</code> and run <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> to get access permissions.</li>
+<li>You can also use <b>File → Install udev rules (Linux)…</b>, which installs them asking for the administrator password.</li>
+<li>Close the official Drevo software: it uses the same channel and blocks access.</li>
+<li><b>Interface: Automatic</b> is usually enough. <b>USB diagnostics</b> lists the detected HID interfaces in case you need to pick another one.</li>
+</ul>
+
+<h2>2. The window</h2>
+<ul>
+<li><b>Menu bar:</b> File, Profiles, Theme, Language and Help. The keyboard size (for example “TKL 88 KEYS”) is shown on the right.</li>
+<li><b>Keyboard status:</b> connection, last command, interface selector and the Re-detect, USB diagnostics and Check now buttons.</li>
+<li><b>Sidebar:</b> the three work pages — <b>Keyboard</b>, <b>Colors</b> and <b>Effects</b>.</li>
+<li><b>Footer:</b> status messages for the last action.</li>
+</ul>
+
+<h2>3. Keyboard page (visual editor)</h2>
+<p>This is the main editor. It shows a keyboard where you pick keys and paint them. What you see is a <b>preview</b>: nothing reaches the real keyboard until you press <b>Apply to keyboard</b>. On startup the editor begins from an unlit keyboard.</p>
+
+<h3>Layout and size</h3>
+<p>Choose the layout (US ANSI; UK, ES, DE, FR and IT in ISO) and the size (TKL or Full size). Only the drawing and legends change: colors are stored by each key's physical position, so they are kept when you switch layouts.</p>
+
+<h3>Selecting keys</h3>
+<ul>
+<li><b>Click a key:</b> selects it or removes it from the selection.</li>
+<li><b>Drag:</b> draws a rectangle and adds every key it touches to the selection. Drag several times to accumulate <b>several areas</b>.</li>
+<li><b>Ctrl + drag:</b> toggles the keys in the area (removes the selected ones, adds the rest).</li>
+<li><b>Shift + drag or click:</b> replaces the selection with the new one.</li>
+<li><b>Click the background:</b> clears the selection. <b>Ctrl+A</b> selects all keys.</li>
+<li>Buttons <b>All</b>, <b>None</b>, <b>Invert</b> and the group buttons (Letters, Digits, F keys, Modifiers, Editing, Arrows).</li>
+</ul>
+
+<h3>Painting</h3>
+<p>Pick a color with the color box and press <b>Paint selection</b>, or press one of the preset colors (they paint directly). <b>Clear color</b> returns the selected keys to the base color.</p>
+
+<h3>Sending to the keyboard and clearing</h3>
+<ul>
+<li><b>Apply to keyboard:</b> sends the base color, the groups and the individual keys.</li>
+<li><b>Lights off:</b> turns all lighting off.</li>
+<li><b>Reset keyboard:</b> clears the editor and turns the keyboard lighting off (asks for confirmation).</li>
+<li><b>Clear editor:</b> removes all selections and colors from the editor, <b>without touching the real keyboard</b>.</li>
+</ul>
+
+<h2>4. Colors page</h2>
+<ul>
+<li><b>1. Whole keyboard color:</b> base color for keys with no other color.</li>
+<li><b>2. Colors by key group:</b> tick a group (Letters, Digits, F keys…) and choose its color.</li>
+<li><b>3. Individual keys:</b> type the key name (<code>esc</code>, <code>space</code>, <code>enter</code>, <code>w</code>, <code>f5</code>…), choose a color and press <b>Add</b>. The table lists the colored keys; <b>Remove</b> deletes the selected ones.</li>
+<li><b>Apply colors</b> sends everything to the keyboard. Priority: individual key &gt; group &gt; base color.</li>
+</ul>
+
+<h2>5. Effects page</h2>
+<p>Effects are stored in the keyboard itself and stay active after you close the application. Choose the effect (Static, Breathing, Radar, Stream, Memory), colors 1 and 2, brightness, speed, rainbow and direction (Stream only), then press <b>Apply effect</b>. To go back to per-key colors use <b>Apply to keyboard</b>.</p>
+
+<h2>6. Advanced editing</h2>
+<ul>
+<li><b>Undo / Redo</b> (Edit menu): every color change can be undone, including “Clear editor”. The window title shows an asterisk (*) when there are changes not saved to a profile.</li>
+<li><b>Copy and paste color:</b> copy the color of the first selected key and paste it onto other keys.</li>
+<li><b>Gradient…:</b> fills the selection with a two-color blend or a rainbow, horizontally or vertically.</li>
+<li><b>Recent:</b> the last colors used appear as swatches; press one to paint the selection. The color dialog also keeps your “custom colors” between sessions.</li>
+<li><b>Rows:</b> the numbered buttons select a whole keyboard row.</li>
+<li><b>Live apply:</b> with this box ticked every change is sent to the keyboard automatically, without pressing “Apply to keyboard”.</li>
+<li><b>Add selection</b> (Colors page) adds the selected keys with the chosen color; the name field autocompletes and warns if the key does not exist.</li>
+<li>Commands are sent to the keyboard in the background: the window never freezes even if USB is slow.</li>
+</ul>
+
+<h2>7. Profiles</h2>
+<ul>
+<li>The <b>Profiles</b> menu offers <b>20 slots</b>. Choosing a named slot loads that profile into the editor; it is <b>not sent to the keyboard</b> until you press “Apply to keyboard”.</li>
+<li><b>Save current profile in…</b> lets you pick a slot and a name (it asks for confirmation if you overwrite).</li>
+<li><b>Rename</b> and <b>Delete</b> work on slots that hold a profile.</li>
+<li><b>Import from file…</b> and <b>Export to file…</b> use .json files to move profiles to another computer.</li>
+<li>A profile stores the colors (base, enabled groups and individual keys), the effect settings, the last applied mode (colors or effect) and the keyboard layout; it does not store the theme or the language. They are saved in <code>~/.config/drevo-light/profiles.json</code>.</li>
+<li><b>Manage profiles…</b> opens a window with the 20 slots and a thumbnail of each profile (double-click to load it).</li>
+<li>The options <b>Apply to keyboard when loading a profile</b> and <b>Apply the last profile at startup</b> send the profile to the keyboard automatically.</li>
+<li>If the editor has unsaved changes, the application asks before replacing them when you load or import a profile.</li>
+</ul>
+
+<h2>8. Theme and language</h2>
+<p>The <b>Theme</b> menu offers System, Light, Dark, Dark blue and Drevo. The <b>Language</b> menu offers Español, English, Français, Italiano, Deutsch and Português. Both are remembered between sessions. To add a language, copy <code>lang/en.xml</code> to <code>lang/xx.xml</code> and translate it.</p>
+
+<h2>9. Troubleshooting</h2>
+<ul>
+<li><b>Keyboard NOT detected:</b> check the USB cable and close the official Drevo software.</li>
+<li><b>Detected, but no access:</b> on Linux the udev permissions are missing (see “Getting started”); on any system, close the official software.</li>
+<li><b>Error when applying:</b> open <b>USB diagnostics</b>, pick another interface in the “Interface” selector and try again.</li>
+<li><b>The color does not match:</b> the preview is approximate; the real brightness depends on the keyboard.</li>
+</ul>
+
+<h2>10. Keyboard shortcuts</h2>
+<ul>
+<li><b>Ctrl+A:</b> select all keys.</li>
+<li><b>Ctrl+Z / Ctrl+Y:</b> undo / redo.</li>
+<li><b>Ctrl+C / Ctrl+V:</b> copy / paste the color of the selected keys.</li>
+<li><b>F1:</b> open this manual.</li>
+<li><b>Ctrl+Q:</b> quit.</li>
+</ul>
+
+<h2>11. License</h2>
+<p>Drevo Light is free software under the GNU GPL v3 or later. See <b>Help → GPL-3.0 license…</b> and <b>Third-party licenses…</b>.</p>

@@ -1,0 +1,3 @@
+# Drevo Tyrfing V2: grant access to the logged-in local user only (uaccess), not to everyone
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="a0f8", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="a0f8", TAG+="uaccess"

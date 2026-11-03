@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Drevo Light
+GenericName=Keyboard lighting
+Comment=Lighting control for the Drevo Tyrfing V2 keyboard
+Exec=@EXEC@
+Icon=drevo-light
+Categories=Utility;Settings;HardwareSettings;
+Terminal=false

@@ -1,0 +1,3 @@
+-r requirements.txt
+pytest
+dtv2  # reference implementation, only used by tests/test_proto.py
