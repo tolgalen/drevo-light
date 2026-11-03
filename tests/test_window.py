@@ -377,7 +377,7 @@ def test_effect_preview_stops_when_leaving_effects_tab(win, qapp):
     assert not p.timer.isActive()
     t = p.now()
     import time
-    time.sleep(0.2)
+    time.sleep(0.8)
     win.show_page(2)
     pump(qapp)
-    assert p.timer.isActive() and p.now() - t < 0.15  # animation clock did not run while away
+    assert p.timer.isActive() and p.now() - t < 0.5  # animation clock did not run while away
