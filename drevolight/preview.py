@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """Effect preview: an approximation of the firmware effects drawn on the keyboard layout.
 
-`effect_colors` is a pure function (easy to test); `PreviewDialog` animates it on a read-only
+`effect_colors` is a pure function (easy to test); `PreviewPanel` animates it on a read-only
 keyboard view. The real firmware may differ in timing and exact look.
 """
 import colorsys
@@ -11,7 +11,7 @@ import random
 import time
 
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtWidgets import QDialog, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from .core import LAYOUTS, build_layout, tr
 from .gfx import mix
@@ -130,23 +130,23 @@ class PreviewView(KeyboardView):
         e.accept()
 
 
-class PreviewDialog(QDialog):
-    """Non-modal window animating the effect currently configured in the Effects tab."""
+class PreviewPanel(QWidget):
+    """Panel (embedded in the Effects tab) animating the effect currently configured there."""
 
     def __init__(self, win, get_params):
-        super().__init__(win)
-        self.setWindowTitle(tr("preview.title"))
+        super().__init__()
         self.get_params = get_params
         self.host = _Host(win)
         self.pos, self.extent = key_positions(win.layout_id, win.size_id)
         self.presses, self.t0, self.paused, self.pause_t = {}, time.monotonic(), False, 0.0
         lay = QVBoxLayout(self)
+        lay.setContentsMargins(0, 0, 0, 0)
         self.title = QLabel("")
         self.title.setStyleSheet("font-weight: bold;")
         lay.addWidget(self.title)
         self.view = PreviewView(self.host, self.press)
         self.view.build()
-        self.view.setMinimumSize(760, 300)
+        self.view.setMinimumHeight(260)
         lay.addWidget(self.view, 1)
         note = QLabel(tr("preview.note"))
         note.setWordWrap(True)
@@ -154,17 +154,21 @@ class PreviewDialog(QDialog):
         row = QHBoxLayout()
         self.btn = QPushButton(tr("preview.pause"))
         self.btn.clicked.connect(self.toggle)
-        close = QPushButton(tr("btn.close"))
-        close.clicked.connect(self.close)
         row.addWidget(self.btn)
         row.addStretch(1)
-        row.addWidget(close)
         lay.addLayout(row)
-        self.resize(900, 420)
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.tick)
-        self.timer.start(33)
+
+    def showEvent(self, e):
+        super().showEvent(e)
+        self.view.fit()
         self.tick()
+        self.timer.start(33)  # animate only while visible
+
+    def hideEvent(self, e):
+        self.timer.stop()
+        super().hideEvent(e)
 
     def now(self):
         return (self.pause_t if self.paused else time.monotonic()) - self.t0
@@ -188,7 +192,3 @@ class PreviewDialog(QDialog):
         self.title.setText(tr(f"fx.{name}"))
         self.host.colors = effect_colors(name, t, params, self.pos, self.extent, self.presses)
         self.view.scene().update()
-
-    def closeEvent(self, e):
-        self.timer.stop()
-        super().closeEvent(e)

@@ -788,6 +788,9 @@ class MainWindow(QMainWindow):
         brow.addWidget(pb)
         brow.addStretch(1)
         v.addLayout(brow)
+        self.preview_panel = preview.PreviewPanel(self, self.effect_params)
+        self.preview_panel.setVisible(False)
+        v.addWidget(self.preview_panel, 10)
         v.addStretch(1)
         return w
 
@@ -800,13 +803,8 @@ class MainWindow(QMainWindow):
                                               rainbow=st["rainbow"])
 
     def show_preview(self):
-        """Open the (non-modal) effect preview; it follows the controls while it is open."""
-        if getattr(self, "preview_dlg", None) is not None:
-            self.preview_dlg.close()
-        self.preview_dlg = preview.PreviewDialog(self, self.effect_params)
-        self.preview_dlg.setAttribute(Qt.WA_DeleteOnClose)
-        self.preview_dlg.destroyed.connect(lambda *_: setattr(self, "preview_dlg", None))
-        self.preview_dlg.show()
+        """Show / hide the preview panel below the buttons; it follows the controls while visible."""
+        self.preview_panel.setVisible(self.preview_panel.isHidden())
 
     def pick_fx(self, n):
         hx = self.ask_color(self.fx_color[n])

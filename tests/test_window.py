@@ -358,10 +358,11 @@ def test_effect_preview_colors_and_dialog(win, qapp):
     assert a != b  # the animation moves
     win.show_preview()
     pump(qapp)
-    d = win.preview_dlg
+    d = win.preview_panel
+    assert not d.isHidden()
     d.tick()
     d.press("a")
     d.toggle()
     d.toggle()
-    d.close()
-    pump(qapp)
+    win.show_preview()
+    assert d.isHidden()
