@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (QButtonGroup, QCheckBox, QColorDialog, QComboBox,
                                QPlainTextEdit, QPushButton, QSlider, QStackedWidget, QTableWidget,
                                QTableWidgetItem, QVBoxLayout, QWidget)
 
-from . import core, dialogs, proto
+from . import core, dialogs, preview, proto
 from .core import (ASSETS_DIR, CATEGORIES, DIRS, EFFECT_IDS, I18, KEY_GROUPS, LAYOUT_IDS, LAYOUTS,
                    LIGHT_PRESETS, PRESETS, SIZE_IDS, THEME_IDS, THEMES, build_layout, hex_to_rgb,
                    layout_rows, luminance, tr)
@@ -779,11 +779,34 @@ class MainWindow(QMainWindow):
         gl.addWidget(self.fx_dir, 6, 1)
         gl.setColumnStretch(1, 1)
         v.addWidget(g)
+        brow = QHBoxLayout()
         b = QPushButton(tr("btn.apply_fx"))
         b.clicked.connect(lambda: self.apply_effect())
-        v.addWidget(b, 0, Qt.AlignLeft)
+        brow.addWidget(b)
+        pb = QPushButton(tr("btn.preview_fx"))
+        pb.clicked.connect(self.show_preview)
+        brow.addWidget(pb)
+        brow.addStretch(1)
+        v.addLayout(brow)
         v.addStretch(1)
         return w
+
+    def effect_params(self):
+        """(effect id, parameters) as currently set in the Effects tab, for the preview."""
+        self.read_effect_widgets()
+        st = self.fx_state
+        return EFFECT_IDS[st["effect"]], dict(color1=self.fx_color[0], color2=self.fx_color[1],
+                                              bright=st["bright"], speed=st["speed"], dir=DIRS[st["dir"]],
+                                              rainbow=st["rainbow"])
+
+    def show_preview(self):
+        """Open the (non-modal) effect preview; it follows the controls while it is open."""
+        if getattr(self, "preview_dlg", None) is not None:
+            self.preview_dlg.close()
+        self.preview_dlg = preview.PreviewDialog(self, self.effect_params)
+        self.preview_dlg.setAttribute(Qt.WA_DeleteOnClose)
+        self.preview_dlg.destroyed.connect(lambda *_: setattr(self, "preview_dlg", None))
+        self.preview_dlg.show()
 
     def pick_fx(self, n):
         hx = self.ask_color(self.fx_color[n])

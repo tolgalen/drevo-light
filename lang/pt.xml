@@ -224,4 +224,9 @@
   <s id="udev.confirm">As regras udev serão instaladas com permissões de administrador:\n\n{cmd}\n\nContinuar?</s>
   <s id="udev.ok">Regras instaladas. Desligue e volte a ligar o teclado.</s>
   <s id="udev.fail">Não foi possível instalar as regras: {err}</s>
+  <s id="btn.preview_fx">Pré-visualizar</s>
+  <s id="preview.title">Pré-visualização do efeito</s>
+  <s id="preview.pause">Pausar</s>
+  <s id="preview.play">Retomar</s>
+  <s id="preview.note">Simulação aproximada: o efeito real do firmware pode diferir em tempo e aspeto. Os controlos do separador Efeitos aplicam-se em direto. Em «Memória», clique numa tecla para a «premir».</s>
 </language>

@@ -224,4 +224,9 @@
   <s id="udev.confirm">Se instalarán las reglas udev con permisos de administrador:\n\n{cmd}\n\n¿Continuar?</s>
   <s id="udev.ok">Reglas instaladas. Desconecta y vuelve a conectar el teclado.</s>
   <s id="udev.fail">No se pudieron instalar las reglas: {err}</s>
+  <s id="btn.preview_fx">Previsualizar</s>
+  <s id="preview.title">Previsualización del efecto</s>
+  <s id="preview.pause">Pausar</s>
+  <s id="preview.play">Reanudar</s>
+  <s id="preview.note">Es una simulación aproximada: el efecto real del firmware puede variar en tiempos y aspecto. Los controles de la pestaña Efectos se aplican en directo. En «Memoria» haz clic en una tecla para «pulsarla».</s>
 </language>

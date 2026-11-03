@@ -340,3 +340,28 @@ def test_settings_roundtrip_and_geometry(win, qapp, tmp_path):
     win.save_settings()
     saved = core.load_settings()
     assert saved["theme"] == "navy" and saved["live"] is True and saved["geometry"]
+
+
+def test_effect_preview_colors_and_dialog(win, qapp):
+    from drevolight import preview
+    from conftest import pump
+    pos, ext = preview.key_positions("es", "tkl")
+    assert len(pos) == 88
+    params = dict(color1="#ff0000", color2="#0000ff", bright=100, speed=50, dir="e", rainbow=False)
+    for name in ("static", "breath", "radar", "stream", "mem_effect"):
+        cols = preview.effect_colors(name, 1.3, params, pos, ext, {"a": 1.0})
+        assert set(cols) == set(pos) and all(len(c) == 7 for c in cols.values())
+    assert preview.effect_colors("static", 0, params, pos, ext)["a"] == "#ff0000"
+    assert set(preview.effect_colors("static", 0, {**params, "bright": 0}, pos, ext).values()) == {"#000000"}
+    a = preview.effect_colors("stream", 0.0, params, pos, ext)
+    b = preview.effect_colors("stream", 0.5, params, pos, ext)
+    assert a != b  # the animation moves
+    win.show_preview()
+    pump(qapp)
+    d = win.preview_dlg
+    d.tick()
+    d.press("a")
+    d.toggle()
+    d.toggle()
+    d.close()
+    pump(qapp)

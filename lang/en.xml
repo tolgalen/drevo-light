@@ -224,4 +224,9 @@
   <s id="udev.confirm">The udev rules will be installed with administrator rights:\n\n{cmd}\n\nContinue?</s>
   <s id="udev.ok">Rules installed. Unplug and plug the keyboard again.</s>
   <s id="udev.fail">The rules could not be installed: {err}</s>
+  <s id="btn.preview_fx">Preview</s>
+  <s id="preview.title">Effect preview</s>
+  <s id="preview.pause">Pause</s>
+  <s id="preview.play">Resume</s>
+  <s id="preview.note">This is an approximate simulation: the real firmware effect may differ in timing and look. The controls in the Effects tab apply live. In "Memory", click a key to "press" it.</s>
 </language>

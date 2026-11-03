@@ -224,4 +224,9 @@
   <s id="udev.confirm">Les règles udev seront installées avec les droits administrateur :\n\n{cmd}\n\nContinuer ?</s>
   <s id="udev.ok">Règles installées. Débranchez puis rebranchez le clavier.</s>
   <s id="udev.fail">Impossible d'installer les règles : {err}</s>
+  <s id="btn.preview_fx">Aperçu</s>
+  <s id="preview.title">Aperçu de l'effet</s>
+  <s id="preview.pause">Pause</s>
+  <s id="preview.play">Reprendre</s>
+  <s id="preview.note">Simulation approximative : l'effet réel du firmware peut différer en rythme et en rendu. Les réglages de l'onglet Effets s'appliquent en direct. En « Mémoire », cliquez sur une touche pour l'« appuyer ».</s>
 </language>
