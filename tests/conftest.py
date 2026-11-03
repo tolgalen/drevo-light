@@ -22,6 +22,8 @@ def win(qapp, tmp_path, monkeypatch):
     from drevolight import core, window
     monkeypatch.setattr(core, "SETTINGS_FILE", tmp_path / "settings.json")
     monkeypatch.setattr(core, "PROFILES_FILE", tmp_path / "profiles.json")
+    # fixed settings: tests must not depend on the machine locale
+    core.save_settings({"lang": "es", "layout": "es", "size": "tkl", "theme": "drevo"})
     w = window.MainWindow(qapp)
     w.show()
     pump(qapp)
