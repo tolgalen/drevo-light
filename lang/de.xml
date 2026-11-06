@@ -199,6 +199,14 @@
   <s id="menu.manage_profiles">Profile verwalten…</s>
   <s id="profile.apply_on_load">Beim Laden eines Profils auf Tastatur anwenden</s>
   <s id="profile.apply_on_start">Letztes Profil beim Start anwenden</s>
+  <s id="profile.auto">Automatische Profile…</s>
+  <s id="auto.title">Automatische Profile</s>
+  <s id="auto.hint">Läuft einer dieser Prozesse, wird sein Profil geladen und angewendet; läuft keiner, kehrt das vorherige Profil zurück. Nicht gespeicherte Änderungen gehen nie verloren: Der Wechsel wartet, bis Sie sie speichern oder rückgängig machen.</s>
+  <s id="auto.enable">Automatische Profile aktivieren</s>
+  <s id="auto.process">Prozess</s>
+  <s id="auto.profile">Profil</s>
+  <s id="auto.add">Hinzufügen</s>
+  <s id="auto.remove">Entfernen</s>
   <s id="profile.unsaved">Der Editor enthält ungespeicherte Änderungen. Verwerfen?</s>
   <s id="kb.rows">Reihen:</s>
   <s id="kb.columns">Spalten:</s>

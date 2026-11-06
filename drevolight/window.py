@@ -37,6 +37,7 @@ from .core import (
     THEMES,
     tr,
 )
+from .autoprofile import AutoProfileMixin
 from .gfx import _icon_cache, stylesheet, system_palette
 from .hardware import HardwareMixin
 from .page_colors import ColorsPageMixin
@@ -50,7 +51,7 @@ from .worker import HardwareRunner
 
 
 class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareMixin,
-                 ProfilesMixin, TrayMixin, QMainWindow):
+                 ProfilesMixin, TrayMixin, AutoProfileMixin, QMainWindow):
     def __init__(self, app):
         super().__init__()
         self.app = app
@@ -105,6 +106,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         QShortcut(QKeySequence.SelectAll, self, activated=lambda: self.kv and self.set_selection(set(self.kv.items)))
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.poll)
+        self.setup_auto_profile(cfg)
         self.setup_tray()
         self.build_ui()
         self.timer.start(2000)
@@ -118,6 +120,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
             "profile": self.active_profile, "live": self.live, "apply_on_load": self.apply_on_load,
             "apply_on_start": self.apply_on_start, "show_splash": self.show_splash,
             "close_to_tray": self.close_to_tray,
+            "auto_profile": self.auto_enabled, "auto_rules": self.auto_rules,
             "recent": self.recent,
             "custom_colors": [QColorDialog.customColor(i).name() for i in range(QColorDialog.customCount())],
             "geometry": bytes(self.saveGeometry().toBase64()).decode(),
@@ -129,6 +132,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
             self.hide()
             return
         self.live_timer.stop()
+        self.stop_auto_profile()
         self.stop_animation()
         self.runner.wait()
         self.save_settings()

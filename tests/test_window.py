@@ -470,3 +470,31 @@ def test_animation_streams_over_one_session_and_stops(win, qapp, monkeypatch):
     assert not win.anim_running()
     assert opened == [b"p", "closed"]  # opened once, closed on stop
     assert len(writes) >= 2 * 18 and all(len(w) == 32 for w in writes)
+
+
+def test_auto_profile_rules_and_switching(win, hw, qapp, monkeypatch):
+    from drevolight import autoprofile, core
+    assert autoprofile.clean_rules([{"process": " steam ", "profile": 2}, {"process": "", "profile": 1},
+                                    {"process": "x", "profile": 99}, "junk"]) == [{"process": "steam", "profile": 2}]
+    names = {"steam", "bash"}
+    rules = [{"process": "Steam.exe", "profile": 1}, {"process": "bash", "profile": 0}]
+    assert autoprofile.pick_rule(rules, names) == 1
+    assert autoprofile.pick_rule(rules, names, existing={0}) == 0
+    assert autoprofile.pick_rule(rules, {"vim"}) is None
+
+    slots = core.load_profiles()
+    slots[0] = {"name": "base", "data": win.profile_data()}
+    slots[1] = {"name": "game", "data": win.profile_data()}
+    core.save_profiles(slots)
+    win.load_slot(0, ask=False, apply=False)
+    win.auto_enabled, win.auto_rules = True, [{"process": "game", "profile": 1}]
+    win._auto_names({"game"})
+    assert win.active_profile == 1 and win._auto_target == 1
+    win._auto_names({"game"})  # unchanged: no second switch
+    win._auto_names(set())     # process closed: back to the previous profile
+    assert win.active_profile == 0 and win._auto_target is None
+    win.set_selection({"esc"})
+    win.paint("#123456")       # unsaved edit: the switch must wait
+    assert win.is_dirty()
+    win._auto_names({"game"})
+    assert win.active_profile == 0 and win._auto_target is None

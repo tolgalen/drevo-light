@@ -199,6 +199,14 @@
   <s id="menu.manage_profiles">Gestisci profili…</s>
   <s id="profile.apply_on_load">Applica alla tastiera al caricamento di un profilo</s>
   <s id="profile.apply_on_start">Applica l'ultimo profilo all'avvio</s>
+  <s id="profile.auto">Profili automatici…</s>
+  <s id="auto.title">Profili automatici</s>
+  <s id="auto.hint">Quando uno di questi processi è in esecuzione, il suo profilo viene caricato e applicato; quando nessuno lo è, torna il profilo precedente. Le modifiche non salvate non vengono mai scartate: il cambio attende che le salvi o le annulli.</s>
+  <s id="auto.enable">Attiva i profili automatici</s>
+  <s id="auto.process">Processo</s>
+  <s id="auto.profile">Profilo</s>
+  <s id="auto.add">Aggiungi</s>
+  <s id="auto.remove">Rimuovi</s>
   <s id="profile.unsaved">Ci sono modifiche non salvate nell'editor. Scartarle?</s>
   <s id="kb.rows">Righe:</s>
   <s id="kb.columns">Colonne:</s>

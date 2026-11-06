@@ -199,6 +199,14 @@
   <s id="menu.manage_profiles">Gerir perfis…</s>
   <s id="profile.apply_on_load">Aplicar ao teclado ao carregar um perfil</s>
   <s id="profile.apply_on_start">Aplicar o último perfil ao iniciar</s>
+  <s id="profile.auto">Perfis automáticos…</s>
+  <s id="auto.title">Perfis automáticos</s>
+  <s id="auto.hint">Quando um destes processos está em execução, o seu perfil é carregado e aplicado; quando nenhum está, volta o perfil anterior. As alterações não guardadas nunca são descartadas: a mudança espera até as guardar ou desfazer.</s>
+  <s id="auto.enable">Ativar perfis automáticos</s>
+  <s id="auto.process">Processo</s>
+  <s id="auto.profile">Perfil</s>
+  <s id="auto.add">Adicionar</s>
+  <s id="auto.remove">Remover</s>
   <s id="profile.unsaved">Há alterações por guardar no editor. Descartá-las?</s>
   <s id="kb.rows">Linhas:</s>
   <s id="kb.columns">Colunas:</s>

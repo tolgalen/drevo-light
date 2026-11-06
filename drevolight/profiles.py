@@ -76,6 +76,7 @@ class ProfilesMixin:
         m.addAction(tr("profile.import"), self.import_profile)
         m.addAction(tr("profile.export"), self.export_profile)
         m.addSeparator()
+        m.addAction(tr("profile.auto"), self.show_auto_profile_dialog)
         self._check_action(m, tr("profile.apply_on_load"), self.apply_on_load,
                            lambda on: (setattr(self, "apply_on_load", on), self.save_settings()))
         self._check_action(m, tr("profile.apply_on_start"), self.apply_on_start,

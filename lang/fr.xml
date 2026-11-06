@@ -199,6 +199,14 @@
   <s id="menu.manage_profiles">Gérer les profils…</s>
   <s id="profile.apply_on_load">Appliquer au clavier au chargement d'un profil</s>
   <s id="profile.apply_on_start">Appliquer le dernier profil au démarrage</s>
+  <s id="profile.auto">Profils automatiques…</s>
+  <s id="auto.title">Profils automatiques</s>
+  <s id="auto.hint">Lorsqu'un de ces processus est en cours d'exécution, son profil est chargé et appliqué ; sinon le profil précédent revient. Les modifications non enregistrées ne sont jamais perdues : le changement attend que vous les enregistriez ou les annuliez.</s>
+  <s id="auto.enable">Activer les profils automatiques</s>
+  <s id="auto.process">Processus</s>
+  <s id="auto.profile">Profil</s>
+  <s id="auto.add">Ajouter</s>
+  <s id="auto.remove">Supprimer</s>
   <s id="profile.unsaved">L'éditeur contient des modifications non enregistrées. Les abandonner ?</s>
   <s id="kb.rows">Rangées :</s>
   <s id="kb.columns">Colonnes :</s>

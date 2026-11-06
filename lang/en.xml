@@ -199,6 +199,14 @@
   <s id="menu.manage_profiles">Manage profiles…</s>
   <s id="profile.apply_on_load">Apply to keyboard when loading a profile</s>
   <s id="profile.apply_on_start">Apply the last profile at startup</s>
+  <s id="profile.auto">Automatic profiles…</s>
+  <s id="auto.title">Automatic profiles</s>
+  <s id="auto.hint">When one of these processes is running, its profile is loaded and applied; when none is, the previous profile returns. Unsaved edits are never discarded: the switch waits until you save or undo them.</s>
+  <s id="auto.enable">Enable automatic profiles</s>
+  <s id="auto.process">Process</s>
+  <s id="auto.profile">Profile</s>
+  <s id="auto.add">Add</s>
+  <s id="auto.remove">Remove</s>
   <s id="profile.unsaved">There are unsaved changes in the editor. Discard them?</s>
   <s id="kb.rows">Rows:</s>
   <s id="kb.columns">Columns:</s>
