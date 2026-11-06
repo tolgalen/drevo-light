@@ -132,6 +132,8 @@
   <s id="splash.loading">Wird geladen...</s>
   <s id="menu.file">Datei</s>
   <s id="menu.quit">Beenden</s>
+  <s id="menu.close_to_tray">In den Infobereich schließen</s>
+  <s id="tray.show">Fenster anzeigen / ausblenden</s>
   <s id="menu.help">Hilfe</s>
   <s id="menu.about">Über Drevo Light…</s>
   <s id="menu.license">GPL-3.0-Lizenz…</s>
@@ -191,6 +193,7 @@
   <s id="profile.apply_on_start">Letztes Profil beim Start anwenden</s>
   <s id="profile.unsaved">Der Editor enthält ungespeicherte Änderungen. Verwerfen?</s>
   <s id="kb.rows">Reihen:</s>
+  <s id="kb.columns">Spalten:</s>
   <s id="kb.recent">Zuletzt:</s>
   <s id="kb.copy">Farbe kopieren</s>
   <s id="kb.paste">Farbe einfügen</s>

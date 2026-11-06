@@ -132,6 +132,8 @@
   <s id="splash.loading">Chargement...</s>
   <s id="menu.file">Fichier</s>
   <s id="menu.quit">Quitter</s>
+  <s id="menu.close_to_tray">Fermer vers la zone de notification</s>
+  <s id="tray.show">Afficher / masquer la fenêtre</s>
   <s id="menu.help">Aide</s>
   <s id="menu.about">À propos de Drevo Light…</s>
   <s id="menu.license">Licence GPL-3.0…</s>
@@ -191,6 +193,7 @@
   <s id="profile.apply_on_start">Appliquer le dernier profil au démarrage</s>
   <s id="profile.unsaved">L'éditeur contient des modifications non enregistrées. Les abandonner ?</s>
   <s id="kb.rows">Rangées :</s>
+  <s id="kb.columns">Colonnes :</s>
   <s id="kb.recent">Récents :</s>
   <s id="kb.copy">Copier</s>
   <s id="kb.paste">Coller</s>

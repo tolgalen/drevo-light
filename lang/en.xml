@@ -132,6 +132,8 @@
   <s id="splash.loading">Loading...</s>
   <s id="menu.file">File</s>
   <s id="menu.quit">Quit</s>
+  <s id="menu.close_to_tray">Close to the system tray</s>
+  <s id="tray.show">Show / hide window</s>
   <s id="menu.help">Help</s>
   <s id="menu.about">About Drevo Light…</s>
   <s id="menu.license">GPL-3.0 license…</s>
@@ -191,6 +193,7 @@
   <s id="profile.apply_on_start">Apply the last profile at startup</s>
   <s id="profile.unsaved">There are unsaved changes in the editor. Discard them?</s>
   <s id="kb.rows">Rows:</s>
+  <s id="kb.columns">Columns:</s>
   <s id="kb.recent">Recent:</s>
   <s id="kb.copy">Copy color</s>
   <s id="kb.paste">Paste color</s>

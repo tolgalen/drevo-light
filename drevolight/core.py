@@ -333,4 +333,16 @@ def layout_rows(keys):
     return [rows[y] for y in sorted(rows)]
 
 
+def layout_columns(keys):
+    """Group the keys by physical column (left to right), using the unit cell under each key's center.
+
+    Wide keys (Shift, Space...) belong to the column of their center, like a vertical sweep of the keyboard.
+    """
+    cols = {}
+    for kid, _label, rects, _poly in keys:
+        x, _y, w, _h = rects[0]
+        cols.setdefault(int(x + w / 2), []).append(kid)
+    return [cols[x] for x in sorted(cols)]
+
+
 _migrate_legacy_files()

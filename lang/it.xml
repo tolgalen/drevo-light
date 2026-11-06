@@ -132,6 +132,8 @@
   <s id="splash.loading">Caricamento...</s>
   <s id="menu.file">File</s>
   <s id="menu.quit">Esci</s>
+  <s id="menu.close_to_tray">Chiudi nell'area di notifica</s>
+  <s id="tray.show">Mostra / nascondi finestra</s>
   <s id="menu.help">Aiuto</s>
   <s id="menu.about">Informazioni su Drevo Light…</s>
   <s id="menu.license">Licenza GPL-3.0…</s>
@@ -191,6 +193,7 @@
   <s id="profile.apply_on_start">Applica l'ultimo profilo all'avvio</s>
   <s id="profile.unsaved">Ci sono modifiche non salvate nell'editor. Scartarle?</s>
   <s id="kb.rows">Righe:</s>
+  <s id="kb.columns">Colonne:</s>
   <s id="kb.recent">Recenti:</s>
   <s id="kb.copy">Copia colore</s>
   <s id="kb.paste">Incolla colore</s>

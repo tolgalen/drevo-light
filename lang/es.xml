@@ -132,6 +132,8 @@
   <s id="splash.loading">Cargando...</s>
   <s id="menu.file">Archivo</s>
   <s id="menu.quit">Salir</s>
+  <s id="menu.close_to_tray">Cerrar a la bandeja del sistema</s>
+  <s id="tray.show">Mostrar / ocultar ventana</s>
   <s id="menu.help">Ayuda</s>
   <s id="menu.about">Acerca de Drevo Light…</s>
   <s id="menu.license">Licencia GPL-3.0…</s>
@@ -191,6 +193,7 @@
   <s id="profile.apply_on_start">Aplicar el último perfil al iniciar</s>
   <s id="profile.unsaved">Hay cambios sin guardar en el editor. ¿Descartarlos?</s>
   <s id="kb.rows">Filas:</s>
+  <s id="kb.columns">Columnas:</s>
   <s id="kb.recent">Recientes:</s>
   <s id="kb.copy">Copiar color</s>
   <s id="kb.paste">Pegar color</s>

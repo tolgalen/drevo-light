@@ -329,8 +329,8 @@ def test_every_ui_string_used_in_code_exists():
 
 def test_udev_command_is_well_formed():
     from drevolight.dialogs import udev_command
-    cmd = udev_command("/opt/x/99-drevo-tyrfing.rules")
-    assert cmd[:3] == ["pkexec", "sh", "-c"] and "/etc/udev/rules.d/99-drevo-tyrfing.rules" in cmd[3]
+    cmd = udev_command("/opt/x/70-drevo-tyrfing.rules")
+    assert cmd[:3] == ["pkexec", "sh", "-c"] and "/etc/udev/rules.d/70-drevo-tyrfing.rules" in cmd[3]
     assert "udevadm control --reload" in cmd[3]
 
 
@@ -381,3 +381,41 @@ def test_effect_preview_stops_when_leaving_effects_tab(win, qapp):
     win.show_page(2)
     pump(qapp)
     assert p.timer.isActive() and p.now() - t < 0.5  # animation clock did not run while away
+
+
+def test_tray_menu_lists_profiles_and_close_to_tray(qapp, monkeypatch, tmp_path):
+    from PySide6.QtWidgets import QSystemTrayIcon
+
+    from drevolight import core
+    from drevolight.window import MainWindow
+    monkeypatch.setattr(QSystemTrayIcon, "isSystemTrayAvailable", staticmethod(lambda: True))
+    monkeypatch.setattr(core, "PROFILES_FILE", tmp_path / "profiles.json")
+    monkeypatch.setattr(core, "SETTINGS_FILE", tmp_path / "settings.json")
+    slots = core.load_profiles()
+    slots[2] = {"name": "night", "data": {}}
+    core.save_profiles(slots)
+    w = MainWindow(qapp)
+    try:
+        assert w.tray is not None
+        labels = [a.text() for a in w._tray_menu.actions() if a.text()]
+        assert any("night" in t for t in labels)
+        w.close_to_tray = True
+        monkeypatch.setattr(w, "tray_enabled", lambda: True)
+        w.show()
+        w.close()
+        assert not w.isVisible() and not w._quitting  # hidden in the tray, not closed
+    finally:
+        w._quitting = True
+        w.tray.hide()
+        w.close()
+
+
+def test_column_selection_covers_every_key_once():
+    from drevolight.core import LAYOUTS, build_layout, layout_columns
+    for lid, (shape, loc) in LAYOUTS.items():
+        for tkl in (True, False):
+            keys = build_layout(shape == "iso", loc, tkl)[0]
+            cols = layout_columns(keys)
+            flat = [k for c in cols for k in c]
+            assert sorted(flat) == sorted(k[0] for k in keys), (lid, tkl)
+            assert 14 <= len(cols) <= 24, (lid, tkl, len(cols))
