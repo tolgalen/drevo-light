@@ -498,3 +498,21 @@ def test_auto_profile_rules_and_switching(win, hw, qapp, monkeypatch):
     assert win.is_dirty()
     win._auto_names({"game"})
     assert win.active_profile == 0 and win._auto_target is None
+
+
+def test_theme_and_language_change_do_not_touch_the_hardware(win, qapp, monkeypatch):
+    from drevolight import proto
+    win.iface_list = [dict(path=b"a", interface_number=0, usage=0, usage_page=1),
+                      dict(path=b"b", interface_number=1, usage=0, usage_page=1)]
+    win.populate_ifaces()
+    win.iface_combo.setCurrentIndex(2)
+    win.iface_sel = 2
+    win._set_conn_spec("ok", "conn.ok.title", "conn.ok.detail", {"name": "X"}, {"ok": 2, "total": 2})
+    calls = []
+    monkeypatch.setattr(proto, "list_interfaces", lambda *a, **k: calls.append(1) or [])
+    for tid in ("dark", "light"):
+        win.change_theme(tid)
+    win.change_lang("en")
+    assert not calls                      # no USB enumeration / device open
+    assert win.iface_sel == 2 and win.iface_combo.currentIndex() == 2  # selection survives
+    assert "X" in win.conn_lbl.text()     # connection text redrawn from the cache

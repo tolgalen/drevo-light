@@ -89,6 +89,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         self.fx_state = dict(effect=0, bright=100, speed=60, dir=0, rainbow=False)
         self.last_mode = "colors"
         self.iface_list, self.iface_sel, self._sig = [], 0, None
+        self._conn_spec = None  # last connection state, redrawn without touching the hardware
         self.history = History()
         self.saved_state = self.snapshot()
         self.kv = None
@@ -287,7 +288,11 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         self.show_page(self.page)
         self.restore_colors(self.snapshot(), send=False)  # sync the new widgets with the state
         self.update_edit_state()
-        self.refresh_ifaces()
+        if self._conn_spec is None:
+            self.refresh_ifaces()  # first build: look for the keyboard
+        else:
+            self.populate_ifaces()  # theme/language change: reuse what we know
+            self.render_connection()
 
     # ---------- menus ----------
     def _check_action(self, menu, text, checked, slot):

@@ -16,23 +16,39 @@ from .core import CATEGORIES, DIRS, EFFECT_IDS, hex_to_rgb, tr
 
 class HardwareMixin:
     def refresh_ifaces(self):
+        """Re-detect the keyboard (touches the hardware) and redraw the connection panel."""
         self.iface_list = proto.list_interfaces()
+        self.iface_sel = 0
+        self.populate_ifaces()
+        self.check_access()
+
+    def populate_ifaces(self):
+        """Fill the interface combo from the cached list (no hardware access)."""
         self.iface_combo.clear()
         self.iface_combo.addItems([tr("iface.auto")] + [proto.describe(i) for i in self.iface_list])
-        self.iface_sel = 0
-        self.check_access()
+        self.iface_combo.setCurrentIndex(self.iface_sel if self.iface_sel <= len(self.iface_list) else 0)
 
     def set_conn(self, state, title, detail=""):
         self.dot.set_color({"ok": "#2e9e4f", "warn": "#e0a100", "off": "#cc3333"}[state])
         self.conn_lbl.setText(title)
         self.access_lbl.setText(detail)
 
+    def render_connection(self):
+        """Redraw the last known connection state (e.g. after a theme/language change)."""
+        if self._conn_spec is not None:
+            state, tkey, tkw, dkey, dkw = self._conn_spec
+            self.set_conn(state, tr(tkey, **tkw), tr(dkey, **dkw))
+
+    def _set_conn_spec(self, state, tkey, dkey, tkw=None, dkw=None):
+        self._conn_spec = (state, tkey, tkw or {}, dkey, dkw or {})
+        self.render_connection()
+
     def check_access(self):
         if proto.hid is None:
-            return self.set_conn("off", tr("conn.nolibs.title"), tr("conn.nolibs.detail"))
+            return self._set_conn_spec("off", "conn.nolibs.title", "conn.nolibs.detail")
         ifs = proto.list_interfaces()
         if not ifs:
-            return self.set_conn("off", tr("conn.nokbd.title"), tr("conn.nokbd.detail"))
+            return self._set_conn_spec("off", "conn.nokbd.title", "conn.nokbd.detail")
         name = ifs[0].get("product_string") or "Drevo Tyrfing V2"
         ok = 0
         for i in ifs:
@@ -44,9 +60,10 @@ class HardwareMixin:
             except Exception:  # noqa: BLE001
                 pass
         if ok:
-            self.set_conn("ok", tr("conn.ok.title", name=name), tr("conn.ok.detail", ok=ok, total=len(ifs)))
+            self._set_conn_spec("ok", "conn.ok.title", "conn.ok.detail", {"name": name},
+                                {"ok": ok, "total": len(ifs)})
         else:
-            self.set_conn("warn", tr("conn.warn.title", name=name), tr("conn.warn.detail"))
+            self._set_conn_spec("warn", "conn.warn.title", "conn.warn.detail", {"name": name})
 
     def poll(self):
         if self.runner.pending:  # do not touch the device while a command is being sent
