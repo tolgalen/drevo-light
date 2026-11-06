@@ -2,7 +2,7 @@
 
 Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written in Python with PySide6. It lets you paint keys on a realistic on-screen keyboard, manage profiles, preview and start the keyboard's built-in effects, all without the official software. Runs on Linux and Windows.
 
-> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, and the whole-keyboard color, per-key/group colors and the static, breathing, radar, stream and memory effects were confirmed on a physical Drevo Tyrfing V2 (Linux, GNOME/Wayland, 2026-11-06), as were column selection, the tray icon and the PC-driven animations (including the Start/Stop button). Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
+> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, and the whole-keyboard color, per-key/group colors and the static, breathing, radar, stream and memory effects were confirmed on a physical Drevo Tyrfing V2 (Linux, GNOME/Wayland, 2026-11-06), as were column selection, the tray icon and the PC-driven animations (including the Start/Stop button and the CPU meter). Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
 
 ## Table of contents
 
@@ -40,12 +40,13 @@ Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written
 - Hotplug detection: the connection panel refreshes when the keyboard is plugged in or out, and the active profile can be re-applied automatically.
 - Commands run on a background thread; the UI never blocks.
 
-- PC-driven animations (rainbow wave, scanner, color wave): the PC streams per-key frames at 15 fps over one open HID session (~19 ms per frame); any other command to the keyboard stops them. Use the colors, brightness and speed of the Effects tab.
+- PC-driven animations (rainbow wave, scanner, color wave, CPU meter bar): the PC streams per-key frames at 15 fps over one open HID session (~19 ms per frame); any other command to the keyboard stops them. Use the colors, brightness and speed of the Effects tab.
 
 **Effect preview**
 - The *Effects* tab always shows the keyboard layout with an animated approximation of the selected effect, following the controls live. It pauses (and its clock freezes) when you leave the tab. In *Memory* mode, click keys to "press" them.
 
 **Application**
+- Automatic profiles (*Profiles → Automatic profiles…*): while a listed process is running its profile is loaded and applied, and the previous profile returns when it ends. It looks at running processes rather than the active window, so it also works on Wayland. Unsaved edits are never discarded.
 - System tray icon (when the desktop provides one; GNOME needs the AppIndicator extension): show/hide the window, switch profile (applies it to the keyboard), lights off, quit; optional *close to the system tray*.
 - 20 profile slots (colors, effect, last mode, layout), manager with thumbnails, import/export to JSON, optional apply-on-load / apply-on-start.
 - 6 languages (es, en, fr, it, de, pt) and 5 themes (system, light, dark, dark blue, Drevo); selectable from the menu bar.
@@ -160,6 +161,7 @@ drevolight/
   hardware.py          HardwareMixin: connection state/polling and commands sent to the keyboard
   profiles.py          ProfilesMixin: 20 profile slots, import/export
   anim.py              PC-driven animations: pure frame function + streaming thread
+  autoprofile.py       AutoProfileMixin: switch profile while a given process is running
   tray.py              TrayMixin: system tray icon (profiles, lights off, close to tray)
   common.py            shared constants and small helpers
   keyboard_view.py     KeyItem + KeyboardView (QGraphicsView, custom area selection)
@@ -279,7 +281,7 @@ Windows/macOS builds and the Inno Setup installer have not been run by the autho
 - No key remapping, macros or firmware profile storage (needs protocol captures from the official software).
 - The effect preview is an approximation of the firmware effects.
 - Translations other than es/en need native review; the logo is an approximation of the official one.
-- Ideas: more PC-driven animations (e.g. music or CPU reactive), automatic profile per active application (not possible in a generic way on Wayland), reduce UI rebuilds when changing theme/language, `mypy` in CI, clean up unused imports (F401 is currently ignored by `ruff`).
+- Ideas: music-reactive animations (needs an audio-capture dependency), per-window profiles (not possible in a generic way on Wayland), `mypy` in CI, clean up unused imports (F401 is currently ignored by `ruff`).
 
 ## Contributing
 

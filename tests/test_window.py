@@ -435,8 +435,8 @@ def test_animation_frames_are_valid_and_move():
     from drevolight import anim
     xs = {"a": 0.0, "b": 0.5, "c": 1.0}
     for name in anim.ANIMATIONS:
-        f0 = anim.animation_frame(name, 0.0, xs, (255, 0, 0), (0, 0, 255), 100, 60)
-        f1 = anim.animation_frame(name, 0.4, xs, (255, 0, 0), (0, 0, 255), 100, 60)
+        f0 = anim.animation_frame(name, 0.0, xs, (255, 0, 0), (0, 0, 255), 100, 60, level=0.2)
+        f1 = anim.animation_frame(name, 0.4, xs, (255, 0, 0), (0, 0, 255), 100, 60, level=0.9)
         assert set(f0) == set(xs) and f0 != f1, name
         assert all(len(c) == 3 and all(0 <= v <= 255 for v in c) for c in f0.values())
     dark = anim.animation_frame("rainbow", 0.0, xs, (255, 0, 0), (0, 0, 255), 0, 60)
@@ -526,3 +526,13 @@ def test_theme_and_language_change_do_not_touch_the_hardware(win, qapp, monkeypa
     assert not calls                      # no USB enumeration / device open
     assert win.iface_sel == 2 and win.iface_combo.currentIndex() == 2  # selection survives
     assert "X" in win.conn_lbl.text()     # connection text redrawn from the cache
+
+
+def test_cpu_animation_bar_follows_the_load():
+    from drevolight import anim
+    xs = {"a": 0.0, "b": 0.5, "c": 1.0}
+    lit = lambda lvl: {k for k, c in anim.animation_frame("cpu", 0, xs, (0, 255, 0), (255, 0, 0), 100, 60, lvl).items()  # noqa: E731
+                       if c != (0, 0, 0)}
+    assert lit(0.0) == {"a"} and lit(0.5) == {"a", "b"} and lit(1.0) == {"a", "b", "c"}
+    m = anim.CpuMeter()
+    assert 0.0 <= m.level() <= 1.0

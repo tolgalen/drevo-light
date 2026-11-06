@@ -56,6 +56,7 @@
   <s id="anim.rainbow">Onda arcobaleno</s>
   <s id="anim.scanner">Scanner</s>
   <s id="anim.gradient">Onda di colore</s>
+  <s id="anim.cpu">Indicatore CPU</s>
   <s id="fx.effect">Effetto:</s>
   <s id="fx.color1">Colore 1:</s>
   <s id="fx.color2">Colore 2:</s>

@@ -56,6 +56,7 @@
   <s id="anim.rainbow">Onda arco-íris</s>
   <s id="anim.scanner">Scanner</s>
   <s id="anim.gradient">Onda de cor</s>
+  <s id="anim.cpu">Medidor de CPU</s>
   <s id="fx.effect">Efeito:</s>
   <s id="fx.color1">Cor 1:</s>
   <s id="fx.color2">Cor 2:</s>
