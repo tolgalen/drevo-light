@@ -327,6 +327,16 @@ def test_every_ui_string_used_in_code_exists():
     assert not missing, missing
 
 
+def test_no_unused_ui_strings():
+    import pathlib
+    from drevolight.core import I18
+    src = "\n".join(f.read_text(encoding="utf-8") for f in pathlib.Path("drevolight").glob("*.py"))
+    dynamic = tuple(re.findall(r'f"([\w.]+)\{', src))  # e.g. tr(f"fx.{name}")
+    unused = {k for k in I18.langs["en"] if f'"{k}"' not in src and f"'{k}'" not in src
+              and not k.startswith(dynamic)}
+    assert not unused, unused
+
+
 def test_udev_command_is_well_formed():
     from drevolight.dialogs import udev_command
     cmd = udev_command("/opt/x/70-drevo-tyrfing.rules")

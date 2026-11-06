@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="fr" name="Français">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Langue :</s>
-  <s id="settings.theme">Thème :</s>
   <s id="theme.system">Système</s>
   <s id="theme.light">Clair</s>
   <s id="theme.dark">Sombre</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Couleur</s>
   <s id="btn.apply_colors">Appliquer les couleurs</s>
   <s id="btn.off">Éteindre</s>
-  <s id="btn.save">Enregistrer le profil</s>
   <s id="btn.load">Charger un profil</s>
   <s id="cat.letters">Lettres</s>
   <s id="cat.digits">Chiffres</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Profil chargé : {path}</s>
   <s id="msg.select_first">Sélectionnez d'abord des touches.</s>
   <s id="file.profile">Profil</s>
-  <s id="kb.hint">Clic : touche · Glisser : zone · Ctrl/Maj : ajouter/retirer</s>
   <s id="kb.layout">Disposition :</s>
   <s id="kb.selection">Sélection</s>
   <s id="kb.all">Toutes</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Effacer la couleur</s>
   <s id="kb.apply">Appliquer au clavier</s>
   <s id="kb.count">{n} touches sélectionnées</s>
-  <s id="kb.title_layout">DISPOSITION {name}</s>
   <s id="kb.badge_tkl">TKL {n} TOUCHES</s>
   <s id="kb.badge_full">{n} TOUCHES</s>
   <s id="size.full">Complet</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Espace</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Version {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Clavier mécanique gaming rétroéclairé</s>
   <s id="splash.loading">Chargement...</s>
   <s id="menu.file">Fichier</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">Les règles udev seront installées avec les droits administrateur :\n\n{cmd}\n\nContinuer ?</s>
   <s id="udev.ok">Règles installées. Débranchez puis rebranchez le clavier.</s>
   <s id="udev.fail">Impossible d'installer les règles : {err}</s>
-  <s id="preview.title">Aperçu de l'effet</s>
   <s id="preview.pause">Pause</s>
   <s id="preview.play">Reprendre</s>
   <s id="preview.note">Simulation approximative : l'effet réel du firmware peut différer en rythme et en rendu. Les réglages de l'onglet Effets s'appliquent en direct. En « Mémoire », cliquez sur une touche pour l'« appuyer ».</s>

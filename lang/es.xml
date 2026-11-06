@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="es" name="Español">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Idioma:</s>
-  <s id="settings.theme">Tema:</s>
   <s id="theme.system">Sistema</s>
   <s id="theme.light">Claro</s>
   <s id="theme.dark">Oscuro</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Color</s>
   <s id="btn.apply_colors">Aplicar colores</s>
   <s id="btn.off">Apagar luces</s>
-  <s id="btn.save">Guardar perfil</s>
   <s id="btn.load">Cargar perfil</s>
   <s id="cat.letters">Letras</s>
   <s id="cat.digits">Números</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Perfil cargado: {path}</s>
   <s id="msg.select_first">Selecciona primero alguna tecla.</s>
   <s id="file.profile">Perfil</s>
-  <s id="kb.hint">Clic: tecla · Arrastrar: área · Ctrl/Mayús: añadir/quitar</s>
   <s id="kb.layout">Distribución:</s>
   <s id="kb.selection">Selección</s>
   <s id="kb.all">Todas</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Quitar color</s>
   <s id="kb.apply">Aplicar al teclado</s>
   <s id="kb.count">{n} teclas seleccionadas</s>
-  <s id="kb.title_layout">LAYOUT {name}</s>
   <s id="kb.badge_tkl">TKL {n} TECLAS</s>
   <s id="kb.badge_full">{n} TECLAS</s>
   <s id="size.full">Completo</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Espacio</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Versión {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Teclado mecánico gaming retroiluminado</s>
   <s id="splash.loading">Cargando...</s>
   <s id="menu.file">Archivo</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">Se instalarán las reglas udev con permisos de administrador:\n\n{cmd}\n\n¿Continuar?</s>
   <s id="udev.ok">Reglas instaladas. Desconecta y vuelve a conectar el teclado.</s>
   <s id="udev.fail">No se pudieron instalar las reglas: {err}</s>
-  <s id="preview.title">Previsualización del efecto</s>
   <s id="preview.pause">Pausar</s>
   <s id="preview.play">Reanudar</s>
   <s id="preview.note">Es una simulación aproximada: el efecto real del firmware puede variar en tiempos y aspecto. Los controles de la pestaña Efectos se aplican en directo. En «Memoria» haz clic en una tecla para «pulsarla».</s>

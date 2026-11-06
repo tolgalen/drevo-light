@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="pt" name="Português">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Idioma:</s>
-  <s id="settings.theme">Tema:</s>
   <s id="theme.system">Sistema</s>
   <s id="theme.light">Claro</s>
   <s id="theme.dark">Escuro</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Cor</s>
   <s id="btn.apply_colors">Aplicar cores</s>
   <s id="btn.off">Apagar luzes</s>
-  <s id="btn.save">Guardar perfil</s>
   <s id="btn.load">Carregar perfil</s>
   <s id="cat.letters">Letras</s>
   <s id="cat.digits">Números</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Perfil carregado: {path}</s>
   <s id="msg.select_first">Selecione primeiro algumas teclas.</s>
   <s id="file.profile">Perfil</s>
-  <s id="kb.hint">Clique: tecla · Arrastar: área · Ctrl/Shift: adicionar/remover</s>
   <s id="kb.layout">Disposição:</s>
   <s id="kb.selection">Seleção</s>
   <s id="kb.all">Todas</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Remover cor</s>
   <s id="kb.apply">Aplicar ao teclado</s>
   <s id="kb.count">{n} teclas selecionadas</s>
-  <s id="kb.title_layout">LAYOUT {name}</s>
   <s id="kb.badge_tkl">TKL {n} TECLAS</s>
   <s id="kb.badge_full">{n} TECLAS</s>
   <s id="size.full">Completo</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Espaço</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Versão {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Teclado mecânico gaming retroiluminado</s>
   <s id="splash.loading">A carregar...</s>
   <s id="menu.file">Ficheiro</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">As regras udev serão instaladas com permissões de administrador:\n\n{cmd}\n\nContinuar?</s>
   <s id="udev.ok">Regras instaladas. Desligue e volte a ligar o teclado.</s>
   <s id="udev.fail">Não foi possível instalar as regras: {err}</s>
-  <s id="preview.title">Pré-visualização do efeito</s>
   <s id="preview.pause">Pausar</s>
   <s id="preview.play">Retomar</s>
   <s id="preview.note">Simulação aproximada: o efeito real do firmware pode diferir em tempo e aspeto. Os controlos do separador Efeitos aplicam-se em direto. Em «Memória», clique numa tecla para a «premir».</s>

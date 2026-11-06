@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="it" name="Italiano">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Lingua:</s>
-  <s id="settings.theme">Tema:</s>
   <s id="theme.system">Sistema</s>
   <s id="theme.light">Chiaro</s>
   <s id="theme.dark">Scuro</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Colore</s>
   <s id="btn.apply_colors">Applica colori</s>
   <s id="btn.off">Spegni luci</s>
-  <s id="btn.save">Salva profilo</s>
   <s id="btn.load">Carica profilo</s>
   <s id="cat.letters">Lettere</s>
   <s id="cat.digits">Numeri</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Profilo caricato: {path}</s>
   <s id="msg.select_first">Seleziona prima qualche tasto.</s>
   <s id="file.profile">Profilo</s>
-  <s id="kb.hint">Clic: tasto · Trascina: area · Ctrl/Maiusc: aggiungi/rimuovi</s>
   <s id="kb.layout">Layout:</s>
   <s id="kb.selection">Selezione</s>
   <s id="kb.all">Tutti</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Rimuovi colore</s>
   <s id="kb.apply">Applica alla tastiera</s>
   <s id="kb.count">{n} tasti selezionati</s>
-  <s id="kb.title_layout">LAYOUT {name}</s>
   <s id="kb.badge_tkl">TKL {n} TASTI</s>
   <s id="kb.badge_full">{n} TASTI</s>
   <s id="size.full">Completa</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Spazio</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Versione {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Tastiera meccanica gaming retroilluminata</s>
   <s id="splash.loading">Caricamento...</s>
   <s id="menu.file">File</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">Le regole udev verranno installate con i permessi di amministratore:\n\n{cmd}\n\nContinuare?</s>
   <s id="udev.ok">Regole installate. Scollega e ricollega la tastiera.</s>
   <s id="udev.fail">Impossibile installare le regole: {err}</s>
-  <s id="preview.title">Anteprima dell'effetto</s>
   <s id="preview.pause">Pausa</s>
   <s id="preview.play">Riprendi</s>
   <s id="preview.note">Simulazione approssimativa: l'effetto reale del firmware può differire per tempi e aspetto. I controlli della scheda Effetti si applicano in tempo reale. In «Memoria» fai clic su un tasto per «premerlo».</s>

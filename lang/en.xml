@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="en" name="English">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Language:</s>
-  <s id="settings.theme">Theme:</s>
   <s id="theme.system">System</s>
   <s id="theme.light">Light</s>
   <s id="theme.dark">Dark</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Color</s>
   <s id="btn.apply_colors">Apply colors</s>
   <s id="btn.off">Lights off</s>
-  <s id="btn.save">Save profile</s>
   <s id="btn.load">Load profile</s>
   <s id="cat.letters">Letters</s>
   <s id="cat.digits">Digits</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Profile loaded: {path}</s>
   <s id="msg.select_first">Select some keys first.</s>
   <s id="file.profile">Profile</s>
-  <s id="kb.hint">Click: key · Drag: area · Ctrl/Shift: add/remove</s>
   <s id="kb.layout">Layout:</s>
   <s id="kb.selection">Selection</s>
   <s id="kb.all">All</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Clear color</s>
   <s id="kb.apply">Apply to keyboard</s>
   <s id="kb.count">{n} keys selected</s>
-  <s id="kb.title_layout">LAYOUT {name}</s>
   <s id="kb.badge_tkl">TKL {n} KEYS</s>
   <s id="kb.badge_full">{n} KEYS</s>
   <s id="size.full">Full size</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Space</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Version {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Backlit Mechanical Gaming Keyboard</s>
   <s id="splash.loading">Loading...</s>
   <s id="menu.file">File</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">The udev rules will be installed with administrator rights:\n\n{cmd}\n\nContinue?</s>
   <s id="udev.ok">Rules installed. Unplug and plug the keyboard again.</s>
   <s id="udev.fail">The rules could not be installed: {err}</s>
-  <s id="preview.title">Effect preview</s>
   <s id="preview.pause">Pause</s>
   <s id="preview.play">Resume</s>
   <s id="preview.note">This is an approximate simulation: the real firmware effect may differ in timing and look. The controls in the Effects tab apply live. In "Memory", click a key to "press" it.</s>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language code="de" name="Deutsch">
   <s id="app.title">Drevo Light - Tyrfing V2</s>
-  <s id="settings.language">Sprache:</s>
-  <s id="settings.theme">Design:</s>
   <s id="theme.system">System</s>
   <s id="theme.light">Hell</s>
   <s id="theme.dark">Dunkel</s>
@@ -35,7 +33,6 @@
   <s id="col.color">Farbe</s>
   <s id="btn.apply_colors">Farben anwenden</s>
   <s id="btn.off">Licht aus</s>
-  <s id="btn.save">Profil speichern</s>
   <s id="btn.load">Profil laden</s>
   <s id="cat.letters">Buchstaben</s>
   <s id="cat.digits">Ziffern</s>
@@ -103,7 +100,6 @@
   <s id="msg.profile_loaded">Profil geladen: {path}</s>
   <s id="msg.select_first">Wähle zuerst einige Tasten aus.</s>
   <s id="file.profile">Profil</s>
-  <s id="kb.hint">Klick: Taste · Ziehen: Bereich · Strg/Umschalt: hinzufügen/entfernen</s>
   <s id="kb.layout">Layout:</s>
   <s id="kb.selection">Auswahl</s>
   <s id="kb.all">Alle</s>
@@ -121,7 +117,6 @@
   <s id="kb.unpaint">Farbe entfernen</s>
   <s id="kb.apply">Auf Tastatur anwenden</s>
   <s id="kb.count">{n} Tasten ausgewählt</s>
-  <s id="kb.title_layout">LAYOUT {name}</s>
   <s id="kb.badge_tkl">TKL {n} TASTEN</s>
   <s id="kb.badge_full">{n} TASTEN</s>
   <s id="size.full">Vollständig</s>
@@ -135,7 +130,6 @@
   <s id="key.space">Leertaste</s>
   <s id="key.altgr">AltGr</s>
   <s id="app.version">Version {v}</s>
-  <s id="banner.title">TYRFING V2 KEYBOARD ENGINE</s>
   <s id="banner.subtitle">Hintergrundbeleuchtete mechanische Gaming-Tastatur</s>
   <s id="splash.loading">Wird geladen...</s>
   <s id="menu.file">Datei</s>
@@ -243,7 +237,6 @@
   <s id="udev.confirm">Die udev-Regeln werden mit Administratorrechten installiert:\n\n{cmd}\n\nFortfahren?</s>
   <s id="udev.ok">Regeln installiert. Tastatur aus- und wieder einstecken.</s>
   <s id="udev.fail">Die Regeln konnten nicht installiert werden: {err}</s>
-  <s id="preview.title">Effektvorschau</s>
   <s id="preview.pause">Pause</s>
   <s id="preview.play">Fortsetzen</s>
   <s id="preview.note">Dies ist eine ungefähre Simulation: Der echte Firmware-Effekt kann in Timing und Aussehen abweichen. Die Regler im Effekte-Tab wirken live. Im Modus „Speicher“ eine Taste anklicken, um sie zu „drücken“.</s>
