@@ -321,8 +321,8 @@ def udev_command(rules_path=None):
     """
     import shlex
     return ["pkexec", "sh", "-c",
-            f"printf %s {shlex.quote(UDEV_RULES)} > /etc/udev/rules.d/99-drevo-tyrfing.rules "
-            "&& chmod 644 /etc/udev/rules.d/99-drevo-tyrfing.rules "
+            f"printf %s {shlex.quote(UDEV_RULES)} > /etc/udev/rules.d/70-drevo-tyrfing.rules "
+            "&& chmod 644 /etc/udev/rules.d/70-drevo-tyrfing.rules "
             "&& udevadm control --reload && udevadm trigger"]
 
 

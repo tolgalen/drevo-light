@@ -12,7 +12,7 @@ datas = [
     (str(root / "assets"), "assets"),
     (str(root / "LICENSE"), "."),
     (str(root / "THIRD_PARTY_LICENSES.txt"), "."),
-    (str(root / "99-drevo-tyrfing.rules"), "."),
+    (str(root / "70-drevo-tyrfing.rules"), "."),
 ]
 
 a = Analysis(

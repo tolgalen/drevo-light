@@ -4,7 +4,7 @@
 <h2>1. Primi passi</h2>
 <ul>
 <li>Collega la tastiera via USB. Il pannello <b>Stato della tastiera</b> (in alto) indica se viene rilevata: punto verde = connessa con accesso, giallo = rilevata ma senza accesso, rosso = non rilevata.</li>
-<li>Su Linux copia <code>99-drevo-tyrfing.rules</code> in <code>/etc/udev/rules.d/</code> ed esegui <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> per ottenere i permessi di accesso.</li>
+<li>Su Linux copia <code>70-drevo-tyrfing.rules</code> in <code>/etc/udev/rules.d/</code> ed esegui <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> per ottenere i permessi di accesso.</li>
 <li>Puoi anche usare <b>File → Installa le regole udev (Linux)…</b>, che le installa chiedendo la password di amministratore.</li>
 <li>Chiudi il software ufficiale Drevo: usa lo stesso canale e blocca l'accesso.</li>
 <li><b>Interfaccia: Automatica</b> di solito basta. <b>Diagnostica USB</b> elenca le interfacce HID rilevate nel caso tu debba sceglierne un'altra.</li>

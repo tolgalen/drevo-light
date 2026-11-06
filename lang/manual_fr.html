@@ -4,7 +4,7 @@
 <h2>1. Premiers pas</h2>
 <ul>
 <li>Branchez le clavier en USB. Le panneau <b>État du clavier</b> (en haut) indique s'il est détecté : point vert = connecté avec accès, jaune = détecté sans accès, rouge = non détecté.</li>
-<li>Sous Linux, copiez <code>99-drevo-tyrfing.rules</code> dans <code>/etc/udev/rules.d/</code> et exécutez <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> pour obtenir les droits d'accès.</li>
+<li>Sous Linux, copiez <code>70-drevo-tyrfing.rules</code> dans <code>/etc/udev/rules.d/</code> et exécutez <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> pour obtenir les droits d'accès.</li>
 <li>Vous pouvez aussi utiliser <b>Fichier → Installer les règles udev (Linux)…</b>, qui les installe en demandant le mot de passe administrateur.</li>
 <li>Fermez le logiciel Drevo officiel : il utilise le même canal et bloque l'accès.</li>
 <li><b>Interface : Automatique</b> suffit généralement. <b>Diagnostic USB</b> liste les interfaces HID détectées si vous devez en choisir une autre.</li>

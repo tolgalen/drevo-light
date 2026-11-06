@@ -4,7 +4,7 @@
 <h2>1. Getting started</h2>
 <ul>
 <li>Connect the keyboard by USB. The <b>Keyboard status</b> panel (top) shows whether it is detected: green dot = connected with access, yellow = detected but no access, red = not detected.</li>
-<li>On Linux, copy <code>99-drevo-tyrfing.rules</code> to <code>/etc/udev/rules.d/</code> and run <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> to get access permissions.</li>
+<li>On Linux, copy <code>70-drevo-tyrfing.rules</code> to <code>/etc/udev/rules.d/</code> and run <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> to get access permissions.</li>
 <li>You can also use <b>File → Install udev rules (Linux)…</b>, which installs them asking for the administrator password.</li>
 <li>Close the official Drevo software: it uses the same channel and blocks access.</li>
 <li><b>Interface: Automatic</b> is usually enough. <b>USB diagnostics</b> lists the detected HID interfaces in case you need to pick another one.</li>

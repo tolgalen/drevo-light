@@ -4,7 +4,7 @@
 <h2>1. Erste Schritte</h2>
 <ul>
 <li>Schließe die Tastatur per USB an. Das Feld <b>Tastaturstatus</b> (oben) zeigt, ob sie erkannt wird: grüner Punkt = verbunden mit Zugriff, gelb = erkannt, aber kein Zugriff, rot = nicht erkannt.</li>
-<li>Unter Linux kopiere <code>99-drevo-tyrfing.rules</code> nach <code>/etc/udev/rules.d/</code> und führe <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> aus, um Zugriffsrechte zu erhalten.</li>
+<li>Unter Linux kopiere <code>70-drevo-tyrfing.rules</code> nach <code>/etc/udev/rules.d/</code> und führe <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> aus, um Zugriffsrechte zu erhalten.</li>
 <li>Du kannst auch <b>Datei → udev-Regeln installieren (Linux)…</b> verwenden; dabei wird das Administratorpasswort abgefragt.</li>
 <li>Schließe die offizielle Drevo-Software: Sie nutzt denselben Kanal und blockiert den Zugriff.</li>
 <li><b>Schnittstelle: Automatisch</b> genügt meist. <b>USB-Diagnose</b> listet die erkannten HID-Schnittstellen auf, falls du eine andere wählen musst.</li>

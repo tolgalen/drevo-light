@@ -7,7 +7,7 @@ EJECUTAR
 PERMISOS (Linux)
   Opcion A: Archivo > Instalar reglas udev (Linux)...  desde la propia aplicacion.
   Opcion B: packaging/install_linux.sh   (menu de aplicaciones + regla udev)
-  Opcion C: sudo install -m 644 99-drevo-tyrfing.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
+  Opcion C: sudo install -m 644 70-drevo-tyrfing.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
 
 MANUAL
   Ayuda > Manual de usuario (F1): se puede imprimir o guardar en PDF.

@@ -4,7 +4,7 @@
 <h2>1. Primeiros passos</h2>
 <ul>
 <li>Ligue o teclado por USB. O painel <b>Estado do teclado</b> (em cima) indica se é detetado: ponto verde = ligado com acesso, amarelo = detetado mas sem acesso, vermelho = não detetado.</li>
-<li>No Linux copie <code>99-drevo-tyrfing.rules</code> para <code>/etc/udev/rules.d/</code> e execute <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> para obter permissões de acesso.</li>
+<li>No Linux copie <code>70-drevo-tyrfing.rules</code> para <code>/etc/udev/rules.d/</code> e execute <code>sudo udevadm control --reload &amp;&amp; sudo udevadm trigger</code> para obter permissões de acesso.</li>
 <li>Também pode usar <b>Ficheiro → Instalar regras udev (Linux)…</b>, que as instala pedindo a palavra-passe de administrador.</li>
 <li>Feche o software oficial da Drevo: usa o mesmo canal e bloqueia o acesso.</li>
 <li><b>Interface: Automática</b> costuma bastar. O <b>Diagnóstico USB</b> mostra as interfaces HID detetadas, caso precise de escolher outra.</li>
