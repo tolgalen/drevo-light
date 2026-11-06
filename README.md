@@ -2,7 +2,7 @@
 
 Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written in Python with PySide6. It lets you paint keys on a realistic on-screen keyboard, manage profiles, preview and start the keyboard's built-in effects, all without the official software. Runs on Linux and Windows.
 
-> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, and the whole-keyboard color, per-key/group colors and the static, breathing, radar, stream and memory effects were confirmed on a physical Drevo Tyrfing V2 (Linux, GNOME/Wayland, 2026-11-06), as were column selection and the tray icon. Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
+> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, and the whole-keyboard color, per-key/group colors and the static, breathing, radar, stream and memory effects were confirmed on a physical Drevo Tyrfing V2 (Linux, GNOME/Wayland, 2026-11-06), as were column selection, the tray icon and the PC-driven animations (including the Start/Stop button). Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
 
 ## Table of contents
 
