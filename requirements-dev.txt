@@ -1,3 +1,4 @@
 -r requirements.txt
 pytest
+ruff
 dtv2  # reference implementation, only used by tests/test_proto.py

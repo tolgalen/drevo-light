@@ -4,6 +4,7 @@
 # terms of the GNU General Public License, version 3 or (at your option) any later
 # version. It is distributed WITHOUT ANY WARRANTY. See the LICENSE file.
 """Application entry point."""
+import os
 import sys
 
 from PySide6.QtGui import QIcon
@@ -15,6 +16,8 @@ from .window import MainWindow
 
 
 def main():
+    # Qt/Wayland logs harmless 'textinput disableSurface' warnings on focus changes
+    os.environ.setdefault("QT_LOGGING_RULES", "qt.qpa.wayland.textinput=false")
     app = QApplication(sys.argv)
     app.setApplicationName("Drevo Light")
     app.setWindowIcon(QIcon(str(ASSETS_DIR / "icon.png")))

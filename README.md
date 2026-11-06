@@ -2,7 +2,7 @@
 
 Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written in Python with PySide6. It lets you paint keys on a realistic on-screen keyboard, manage profiles, preview and start the keyboard's built-in effects, all without the official software. Runs on Linux and Windows.
 
-> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, but it has **not yet been tested with a physical keyboard**. Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
+> **Status.** The HID protocol was verified byte for byte against the reference library [`dtv2`](https://pypi.org/project/dtv2/) using a simulated HID device, and the whole-keyboard color, per-key/group colors and the static, breathing, radar, stream and memory effects were confirmed on a physical Drevo Tyrfing V2 (Linux, GNOME/Wayland, 2026-11-06), as were column selection and the tray icon. Only lighting is supported (no key remapping or macros). Only the Linux PyInstaller build has been verified.
 
 ## Table of contents
 
@@ -28,7 +28,7 @@ Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written
 **Editing**
 - Realistic visual keyboard (QGraphicsView) with per-key legends, LED glow and selection highlight.
 - Layouts: US (ANSI) and UK, ES, DE, FR, IT (ISO), each in full-size and TKL versions.
-- Selection: click toggles a key; a plain drag *adds* an area (several areas can be accumulated); `Ctrl` + drag toggles; `Shift` + drag replaces; click on the background clears. Buttons for all / none / invert, key groups (letters, digits, F-keys, modifiers, editing, arrows) and whole rows.
+- Selection: click toggles a key; a plain drag *adds* an area (several areas can be accumulated); `Ctrl` + drag toggles; `Shift` + drag replaces; click on the background clears. Buttons for all / none / invert, key groups (letters, digits, F-keys, modifiers, editing, arrows), whole rows and whole columns.
 - Painting: color picker, presets, recent colors (persisted), custom colors (persisted), two-color or rainbow gradients (horizontal/vertical), copy/paste color.
 - The editor starts from an unlit keyboard (black base); a base color and per-group colors are available in the *Colors* tab, and a table lets you type key names (with validation and autocompletion) and *Add selection*.
 - Undo / redo (up to 100 steps, includes *Clear editor*).
@@ -44,6 +44,7 @@ Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written
 - The *Effects* tab always shows the keyboard layout with an animated approximation of the selected effect, following the controls live. It pauses (and its clock freezes) when you leave the tab. In *Memory* mode, click keys to "press" them.
 
 **Application**
+- System tray icon (when the desktop provides one; GNOME needs the AppIndicator extension): show/hide the window, switch profile (applies it to the keyboard), lights off, quit; optional *close to the system tray*.
 - 20 profile slots (colors, effect, last mode, layout), manager with thumbnails, import/export to JSON, optional apply-on-load / apply-on-start.
 - 6 languages (es, en, fr, it, de, pt) and 5 themes (system, light, dark, dark blue, Drevo); selectable from the menu bar.
 - Built-in user manual in each language, printable and exportable to PDF (`F1`).
@@ -62,7 +63,15 @@ run.bat                # Windows: same
 python -m drevolight   # if the dependencies are already installed
 ```
 
-`run.sh` needs `python3-venv` on Debian/Ubuntu. If `hidapi` is missing the GUI still starts and explains what to install.
+`run.sh` prefers Python 3.13/3.12/3.11/3.10 when available. On Debian/Ubuntu it needs `python3-venv`. If no prebuilt `hidapi` wheel exists for your Python (typically a very new release), pip compiles it and needs development packages; the script prints the exact command for your distribution:
+
+| Distribution | Packages |
+|---|---|
+| Fedora / RHEL | `sudo dnf install libusb1-devel systemd-devel gcc python3-devel` |
+| Debian / Ubuntu | `sudo apt install libusb-1.0-0-dev libudev-dev gcc python3-dev python3-venv` |
+| Arch | `sudo pacman -S libusb base-devel` |
+
+If `hidapi` is missing the GUI still starts and explains what to install.
 
 ## Linux permissions (udev)
 
@@ -72,7 +81,7 @@ Without a udev rule only root can open the keyboard's HID interfaces. Choose one
 2. `packaging/install_linux.sh` (installs the application menu entry, the icon and the rule; use `--no-udev` to skip the rule).
 3. Manually:
    ```bash
-   sudo install -m 644 99-drevo-tyrfing.rules /etc/udev/rules.d/
+   sudo install -m 644 70-drevo-tyrfing.rules /etc/udev/rules.d/
    sudo udevadm control --reload && sudo udevadm trigger
    ```
    Then unplug and plug the keyboard again.
@@ -142,7 +151,14 @@ Imported files are validated and sanitized (unknown keys/colors/ranges are disca
 drevo_light.py         launcher (python drevo_light.py)
 drevolight/
   app.py               main(): QApplication, splash, main window
-  window.py            MainWindow: menus, pages, profiles, connection, effects page
+  window.py            MainWindow: construction, menus, settings/theme, undo/redo (composes the mixins below)
+  page_keyboard.py     KeyboardPageMixin: keyboard tab, selection and painting
+  page_colors.py       ColorsPageMixin: colors tab (base, groups, per-key table)
+  page_effects.py      EffectsPageMixin: effects tab
+  hardware.py          HardwareMixin: connection state/polling and commands sent to the keyboard
+  profiles.py          ProfilesMixin: 20 profile slots, import/export
+  tray.py              TrayMixin: system tray icon (profiles, lights off, close to tray)
+  common.py            shared constants and small helpers
   keyboard_view.py     KeyItem + KeyboardView (QGraphicsView, custom area selection)
   preview.py           effect simulation (pure) + PreviewPanel (embedded animation)
   proto.py             native HID protocol: pure packet builders + Keyboard class
@@ -219,6 +235,8 @@ QT_QPA_PLATFORM=offscreen python -m pytest -q
 | `tests/test_window.py` | Mouse selection, undo/redo, gradient, recent colors, key validation, worker-based apply, live mode, error reporting, 20 profile slots, import sanitizing, manual PDFs, translation consistency, udev command, settings, effect preview and its lifecycle |
 | `tests/test_smoke.py` | The window builds with every theme and language |
 
+CI also runs `ruff check .` (see `ruff.toml`).
+
 `dtv2` is a development-only dependency (CC-BY-NC-SA) and is not used at runtime. GitHub Actions (`.github/workflows/ci.yml`) runs the suite on Ubuntu and Windows for every push and pull request, and builds PyInstaller artifacts for tags matching `v*`.
 
 ## Packaging
@@ -254,11 +272,11 @@ Windows/macOS builds and the Inno Setup installer have not been run by the autho
 
 ## Limitations and roadmap
 
-- Not validated on a physical keyboard yet.
+- Hardware-tested only on one keyboard and on Linux; Windows is untested. Brightness/speed/direction values and the profile apply flow have not been checked on the device.
 - No key remapping, macros or firmware profile storage (needs protocol captures from the official software).
 - The effect preview is an approximation of the firmware effects.
 - Translations other than es/en need native review; the logo is an approximation of the official one.
-- Ideas: tray icon with profile switching, PC-driven animated effects, selection by columns, reduce UI rebuilds when changing theme/language, `ruff`/`mypy` in CI, split `window.py` into smaller modules.
+- Ideas: PC-driven animated effects (streaming per-key frames), automatic profile per active application (not possible in a generic way on Wayland), reduce UI rebuilds when changing theme/language, `mypy` in CI, clean up unused imports (F401 is currently ignored by `ruff`).
 
 ## Contributing
 
