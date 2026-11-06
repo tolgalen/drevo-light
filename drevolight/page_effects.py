@@ -9,12 +9,14 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
+    QFrame,
     QGridLayout,
     QGroupBox,
     QHBoxLayout,
     QLabel,
     QMessageBox,
     QPushButton,
+    QScrollArea,
     QSlider,
     QVBoxLayout,
     QWidget,
@@ -69,23 +71,26 @@ class EffectsPageMixin:
         b.clicked.connect(lambda: self.apply_effect())
         brow.addWidget(b)
         brow.addStretch(1)
-        v.addLayout(brow)
-        g = QGroupBox(tr("fx.anim_group"))
-        ah = QHBoxLayout(g)
+        brow.addWidget(QLabel(tr("fx.anim_group") + ":"))
         self.anim_combo = QComboBox()
         self.anim_combo.addItems([tr(f"anim.{k}") for k in anim.ANIMATIONS])
-        ah.addWidget(self.anim_combo)
         self.anim_btn = QPushButton(tr("fx.anim_stop") if self.anim_running() else tr("fx.anim_start"))
         self.anim_btn.clicked.connect(self.toggle_animation)
-        ah.addWidget(self.anim_btn)
-        hint = QLabel(tr("fx.anim_hint"))
-        hint.setWordWrap(True)
-        ah.addWidget(hint, 1)
-        v.addWidget(g)
+        for wdg in (self.anim_combo, self.anim_btn):
+            wdg.setToolTip(tr("fx.anim_hint"))
+            brow.addWidget(wdg)
+        v.addLayout(brow)
         self.preview_panel = preview.PreviewPanel(self, self.effect_params)
         v.addWidget(self.preview_panel, 10)
         v.addStretch(1)
-        return w
+        # scrolls instead of overlapping when the window is too short for the whole page
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setFrameShape(QFrame.NoFrame)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        w.setMinimumHeight(560)
+        scroll.setWidget(w)
+        return scroll
 
     def effect_params(self):
         """(effect id, parameters) as currently set in the Effects tab, for the preview."""
