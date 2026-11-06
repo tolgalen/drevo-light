@@ -51,6 +51,14 @@
   <s id="preset.magenta">Magenta</s>
   <s id="preset.amber">Bernstein</s>
   <s id="fx.group">Tastatureffekt (in der Tastatur gespeichert)</s>
+  <s id="fx.anim_group">Vom PC gesteuerte Animation</s>
+  <s id="fx.anim_start">Starten</s>
+  <s id="fx.anim_stop">Stoppen</s>
+  <s id="fx.anim_hint">Verwendet die obigen Farben, Helligkeit und Geschwindigkeit. Der PC sendet jedes Bild, die Anwendung muss geöffnet bleiben.</s>
+  <s id="fx.anim_running">Animation läuft (jeder andere Befehl beendet sie)</s>
+  <s id="anim.rainbow">Regenbogenwelle</s>
+  <s id="anim.scanner">Scanner</s>
+  <s id="anim.gradient">Farbwelle</s>
   <s id="fx.effect">Effekt:</s>
   <s id="fx.color1">Farbe 1:</s>
   <s id="fx.color2">Farbe 2:</s>

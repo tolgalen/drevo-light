@@ -51,6 +51,14 @@
   <s id="preset.magenta">Magenta</s>
   <s id="preset.amber">Âmbar</s>
   <s id="fx.group">Efeito do teclado (guardado no próprio teclado)</s>
+  <s id="fx.anim_group">Animação controlada pelo PC</s>
+  <s id="fx.anim_start">Iniciar</s>
+  <s id="fx.anim_stop">Parar</s>
+  <s id="fx.anim_hint">Usa as cores, o brilho e a velocidade acima. O PC envia cada imagem, por isso a aplicação tem de ficar aberta.</s>
+  <s id="fx.anim_running">Animação em curso (qualquer outro comando a pára)</s>
+  <s id="anim.rainbow">Onda arco-íris</s>
+  <s id="anim.scanner">Scanner</s>
+  <s id="anim.gradient">Onda de cor</s>
   <s id="fx.effect">Efeito:</s>
   <s id="fx.color1">Cor 1:</s>
   <s id="fx.color2">Cor 2:</s>

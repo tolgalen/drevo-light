@@ -51,6 +51,14 @@
   <s id="preset.magenta">Magenta</s>
   <s id="preset.amber">Ambre</s>
   <s id="fx.group">Effet du clavier (enregistré dans le clavier)</s>
+  <s id="fx.anim_group">Animation pilotée par le PC</s>
+  <s id="fx.anim_start">Démarrer</s>
+  <s id="fx.anim_stop">Arrêter</s>
+  <s id="fx.anim_hint">Utilise les couleurs, la luminosité et la vitesse ci-dessus. Le PC envoie chaque image : l'application doit rester ouverte.</s>
+  <s id="fx.anim_running">Animation en cours (toute autre commande l'arrête)</s>
+  <s id="anim.rainbow">Onde arc-en-ciel</s>
+  <s id="anim.scanner">Scanner</s>
+  <s id="anim.gradient">Onde de couleur</s>
   <s id="fx.effect">Effet :</s>
   <s id="fx.color1">Couleur 1 :</s>
   <s id="fx.color2">Couleur 2 :</s>

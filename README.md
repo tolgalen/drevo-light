@@ -40,6 +40,8 @@ Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written
 - Hotplug detection: the connection panel refreshes when the keyboard is plugged in or out, and the active profile can be re-applied automatically.
 - Commands run on a background thread; the UI never blocks.
 
+- PC-driven animations (rainbow wave, scanner, color wave): the PC streams per-key frames at 15 fps over one open HID session (~19 ms per frame); any other command to the keyboard stops them. Use the colors, brightness and speed of the Effects tab.
+
 **Effect preview**
 - The *Effects* tab always shows the keyboard layout with an animated approximation of the selected effect, following the controls live. It pauses (and its clock freezes) when you leave the tab. In *Memory* mode, click keys to "press" them.
 
@@ -157,6 +159,7 @@ drevolight/
   page_effects.py      EffectsPageMixin: effects tab
   hardware.py          HardwareMixin: connection state/polling and commands sent to the keyboard
   profiles.py          ProfilesMixin: 20 profile slots, import/export
+  anim.py              PC-driven animations: pure frame function + streaming thread
   tray.py              TrayMixin: system tray icon (profiles, lights off, close to tray)
   common.py            shared constants and small helpers
   keyboard_view.py     KeyItem + KeyboardView (QGraphicsView, custom area selection)
@@ -276,7 +279,7 @@ Windows/macOS builds and the Inno Setup installer have not been run by the autho
 - No key remapping, macros or firmware profile storage (needs protocol captures from the official software).
 - The effect preview is an approximation of the firmware effects.
 - Translations other than es/en need native review; the logo is an approximation of the official one.
-- Ideas: PC-driven animated effects (streaming per-key frames), automatic profile per active application (not possible in a generic way on Wayland), reduce UI rebuilds when changing theme/language, `mypy` in CI, clean up unused imports (F401 is currently ignored by `ruff`).
+- Ideas: more PC-driven animations (e.g. music or CPU reactive), automatic profile per active application (not possible in a generic way on Wayland), reduce UI rebuilds when changing theme/language, `mypy` in CI, clean up unused imports (F401 is currently ignored by `ruff`).
 
 ## Contributing
 

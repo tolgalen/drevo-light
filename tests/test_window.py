@@ -419,3 +419,54 @@ def test_column_selection_covers_every_key_once():
             flat = [k for c in cols for k in c]
             assert sorted(flat) == sorted(k[0] for k in keys), (lid, tkl)
             assert 14 <= len(cols) <= 24, (lid, tkl, len(cols))
+
+
+def test_animation_frames_are_valid_and_move():
+    from drevolight import anim
+    xs = {"a": 0.0, "b": 0.5, "c": 1.0}
+    for name in anim.ANIMATIONS:
+        f0 = anim.animation_frame(name, 0.0, xs, (255, 0, 0), (0, 0, 255), 100, 60)
+        f1 = anim.animation_frame(name, 0.4, xs, (255, 0, 0), (0, 0, 255), 100, 60)
+        assert set(f0) == set(xs) and f0 != f1, name
+        assert all(len(c) == 3 and all(0 <= v <= 255 for v in c) for c in f0.values())
+    dark = anim.animation_frame("rainbow", 0.0, xs, (255, 0, 0), (0, 0, 255), 0, 60)
+    assert all(c == (0, 0, 0) for c in dark.values())
+
+
+def test_animation_streams_over_one_session_and_stops(win, qapp, monkeypatch):
+    import time
+
+    from drevolight import proto
+    opened, writes = [], []
+
+    class Dev:
+        def open_path(self, path):
+            opened.append(path)
+
+        def write(self, data):
+            writes.append(bytes(data))
+            return len(data)
+
+        def close(self):
+            opened.append("closed")
+
+    class Hid:
+        @staticmethod
+        def enumerate(vid=0, pid=0):
+            return [dict(path=b"p", interface_number=1, usage=0, usage_page=1)]
+
+        @staticmethod
+        def device():
+            return Dev()
+
+    monkeypatch.setattr(proto, "hid", Hid)
+    monkeypatch.setattr(proto.Keyboard, "__init__",
+                        lambda self, forced_path=None, hid_module=None: (setattr(self, "forced_path", None),
+                                                                         setattr(self, "hid", Hid)) and None)
+    win.start_animation()
+    assert win.anim_running()
+    time.sleep(0.4)
+    win.stop_animation()
+    assert not win.anim_running()
+    assert opened == [b"p", "closed"]  # opened once, closed on stop
+    assert len(writes) >= 2 * 18 and all(len(w) == 32 for w in writes)

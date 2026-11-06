@@ -90,6 +90,7 @@ class HardwareMixin:
     # ---------- keyboard actions (run on a worker thread) ----------
     def run(self, fn, ok, silent=False):
         """Send `fn(keyboard)` to the keyboard without blocking the window."""
+        self.stop_animation()  # one writer at a time
         sel = self.iface_sel
         path = self.iface_list[sel - 1]["path"] if 0 < sel <= len(self.iface_list) else None
         self.status.setText(tr("status.sending"))

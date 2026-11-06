@@ -128,33 +128,43 @@ class Keyboard:
             return 2 if i["usage_page"] >= 0xFF00 else 3
         return sorted(interfaces, key=rank)
 
-    def _send(self, packets):
+    def _open(self):
+        """Open the best available interface -> (device, interface info)."""
         if self.hid is None:
             raise KeyboardError(tr("err.libs"))
         candidates = self._candidates()
         if not candidates:
             raise KeyboardError(tr("err.nokbd"))
-        dev, iface, last = None, None, None
+        last = None
         for i in candidates:
             try:
                 dev = self.hid.device()
                 dev.open_path(i["path"])
-                iface = i
-                break
+                return dev, i
             except Exception as e:  # noqa: BLE001
-                dev, last = None, e
-        if dev is None:
-            raise KeyboardError(tr("err.open", err=last))
+                last = e
+        raise KeyboardError(tr("err.open", err=last))
+
+    @staticmethod
+    def _write(dev, iface, packets):
+        for pkt in packets:
+            if dev.write(list(pkt)) == -1:
+                try:
+                    err = dev.error()
+                except Exception:  # noqa: BLE001
+                    err = "?"
+                raise KeyboardError(tr("err.write", iface=describe(iface), err=err))
+
+    def _send(self, packets):
+        dev, iface = self._open()
         try:
-            for pkt in packets:
-                if dev.write(list(pkt)) == -1:
-                    try:
-                        err = dev.error()
-                    except Exception:  # noqa: BLE001
-                        err = "?"
-                    raise KeyboardError(tr("err.write", iface=describe(iface), err=err))
+            self._write(dev, iface, packets)
         finally:
             dev.close()
+
+    def session(self):
+        """Keep the device open for many writes (animations). Use as a context manager."""
+        return Session(self)
 
     # -- commands -------------------------------------------------------------
     def kbd(self, rgb):
@@ -186,3 +196,23 @@ class Keyboard:
 
     def mem_effect(self, color1, color2=(255, 0, 0), brightness=100):
         self._send([effect_packet("mem_effect", color1, color2, brightness)])
+
+
+class Session:
+    """An open device that accepts many packet lists; closes on exit."""
+
+    def __init__(self, keyboard):
+        self._kb = keyboard
+        self._dev = self._iface = None
+
+    def __enter__(self):
+        self._dev, self._iface = self._kb._open()
+        return self
+
+    def __exit__(self, *exc):
+        if self._dev is not None:
+            self._dev.close()
+            self._dev = None
+
+    def send(self, packets):
+        self._kb._write(self._dev, self._iface, packets)

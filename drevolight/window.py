@@ -69,6 +69,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         self.show_splash = bool(cfg.get("show_splash", True))
         self.close_to_tray = bool(cfg.get("close_to_tray", False))
         self._quitting = False
+        self.anim = None
         self.recent = [c for c in cfg.get("recent", []) if HEX_COLOR.match(str(c))][:MAX_RECENT]
         for i, hx in enumerate(cfg.get("custom_colors", [])[:16]):
             if HEX_COLOR.match(str(hx)):
@@ -128,6 +129,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
             self.hide()
             return
         self.live_timer.stop()
+        self.stop_animation()
         self.runner.wait()
         self.save_settings()
         super().closeEvent(e)

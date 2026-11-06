@@ -13,14 +13,15 @@ from PySide6.QtWidgets import (
     QGroupBox,
     QHBoxLayout,
     QLabel,
+    QMessageBox,
     QPushButton,
     QSlider,
     QVBoxLayout,
     QWidget,
 )
 
-from . import preview
-from .core import DIRS, EFFECT_IDS, tr
+from . import anim, preview
+from .core import DIRS, EFFECT_IDS, LAYOUTS, build_layout, hex_to_rgb, tr
 
 
 class EffectsPageMixin:
@@ -69,6 +70,18 @@ class EffectsPageMixin:
         brow.addWidget(b)
         brow.addStretch(1)
         v.addLayout(brow)
+        g = QGroupBox(tr("fx.anim_group"))
+        ah = QHBoxLayout(g)
+        self.anim_combo = QComboBox()
+        self.anim_combo.addItems([tr(f"anim.{k}") for k in anim.ANIMATIONS])
+        ah.addWidget(self.anim_combo)
+        self.anim_btn = QPushButton(tr("fx.anim_stop") if self.anim_running() else tr("fx.anim_start"))
+        self.anim_btn.clicked.connect(self.toggle_animation)
+        ah.addWidget(self.anim_btn)
+        hint = QLabel(tr("fx.anim_hint"))
+        hint.setWordWrap(True)
+        ah.addWidget(hint, 1)
+        v.addWidget(g)
         self.preview_panel = preview.PreviewPanel(self, self.effect_params)
         v.addWidget(self.preview_panel, 10)
         v.addStretch(1)
@@ -102,3 +115,43 @@ class EffectsPageMixin:
         self.fx_rainbow.setChecked(st["rainbow"])
         for i in range(2):
             self.set_swatch(self.fx_btn[i], self.fx_color[i])
+
+    # ---------- animations driven by the PC ----------
+    def anim_running(self):
+        return self.anim is not None and self.anim.isRunning()
+
+    def toggle_animation(self):
+        if self.anim_running():
+            self.stop_animation()
+        else:
+            self.start_animation()
+
+    def start_animation(self):
+        self.runner.wait()  # let pending one-shot commands finish: only one writer at a time
+        self.read_effect_widgets()
+        st = self.fx_state
+        shape, loc = LAYOUTS[self.layout_id]
+        xs = anim.key_positions(build_layout(shape == "iso", loc, self.size_id == "tkl")[0])
+        sel = self.iface_sel
+        path = self.iface_list[sel - 1]["path"] if 0 < sel <= len(self.iface_list) else None
+        self.anim = anim.AnimationThread(
+            anim.ANIMATIONS[self.anim_combo.currentIndex()], xs, hex_to_rgb(self.fx_color[0]),
+            hex_to_rgb(self.fx_color[1]), st["bright"], st["speed"], path, self)
+        self.anim.failed.connect(self._animation_failed)
+        self.anim.start()
+        self.anim_btn.setText(tr("fx.anim_stop"))
+        self.status.setText(tr("fx.anim_running"))
+
+    def stop_animation(self):
+        if self.anim is not None:
+            self.anim.failed.disconnect()
+            self.anim.stop()
+            self.anim = None
+        btn = getattr(self, "anim_btn", None)
+        if btn is not None:
+            btn.setText(tr("fx.anim_start"))
+
+    def _animation_failed(self, error):
+        self.stop_animation()
+        self.status.setText(tr("status.error"))
+        QMessageBox.critical(self, tr("err.title"), tr("err.msg", err=error))

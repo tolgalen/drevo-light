@@ -51,6 +51,14 @@
   <s id="preset.magenta">Magenta</s>
   <s id="preset.amber">Ambra</s>
   <s id="fx.group">Effetto della tastiera (salvato nella tastiera stessa)</s>
+  <s id="fx.anim_group">Animazione gestita dal PC</s>
+  <s id="fx.anim_start">Avvia</s>
+  <s id="fx.anim_stop">Ferma</s>
+  <s id="fx.anim_hint">Usa i colori, la luminosità e la velocità qui sopra. Il PC invia ogni fotogramma, quindi l'applicazione deve restare aperta.</s>
+  <s id="fx.anim_running">Animazione in corso (qualsiasi altro comando la ferma)</s>
+  <s id="anim.rainbow">Onda arcobaleno</s>
+  <s id="anim.scanner">Scanner</s>
+  <s id="anim.gradient">Onda di colore</s>
   <s id="fx.effect">Effetto:</s>
   <s id="fx.color1">Colore 1:</s>
   <s id="fx.color2">Colore 2:</s>
