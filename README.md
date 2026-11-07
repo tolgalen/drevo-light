@@ -6,22 +6,39 @@ Lighting editor for the **Drevo Tyrfing V2** keyboard (USB `0416:a0f8`), written
 
 ## Table of contents
 
-1. [Features](#features)
-2. [Installation and running](#installation-and-running)
-3. [Linux permissions (udev)](#linux-permissions-udev)
-4. [Using the application](#using-the-application)
-5. [Profiles and configuration files](#profiles-and-configuration-files)
-6. [Architecture](#architecture)
-7. [HID protocol](#hid-protocol)
-8. [Internationalization](#internationalization)
-9. [Themes](#themes)
-10. [Testing and CI](#testing-and-ci)
-11. [Packaging](#packaging)
-12. [Security notes](#security-notes)
-13. [Troubleshooting](#troubleshooting)
-14. [Limitations and roadmap](#limitations-and-roadmap)
-15. [Contributing](#contributing)
-16. [License](#license)
+1. [Screenshots](#screenshots)
+2. [Features](#features)
+3. [Installation and running](#installation-and-running)
+4. [Linux permissions (udev)](#linux-permissions-udev)
+5. [Using the application](#using-the-application)
+6. [Profiles and configuration files](#profiles-and-configuration-files)
+7. [Architecture](#architecture)
+8. [HID protocol](#hid-protocol)
+9. [Internationalization](#internationalization)
+10. [Themes](#themes)
+11. [Testing and CI](#testing-and-ci)
+12. [Packaging](#packaging)
+13. [Security notes](#security-notes)
+14. [Troubleshooting](#troubleshooting)
+15. [Limitations and roadmap](#limitations-and-roadmap)
+16. [Contributing](#contributing)
+17. [License](#license)
+
+## Screenshots
+
+Captured from the running application with a Drevo Tyrfing V2 connected (note the green *Connected* indicator).
+
+**Keyboard tab** – paint keys on the on-screen keyboard, selection tools, gradients and the apply buttons.
+
+![Keyboard tab](docs/img/keyboard.png)
+
+**Colors tab** – base color, color groups and the per-key table.
+
+![Colors tab](docs/img/colors.png)
+
+**Effects tab** – firmware effects, PC-driven animations and the live preview.
+
+![Effects tab](docs/img/effects.png)
 
 ## Features
 
