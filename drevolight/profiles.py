@@ -22,10 +22,14 @@ class ProfilesMixin:
         data["layout"] = {"id": self.layout_id, "size": self.size_id}
         data["effect"] = {**self.fx_state, "colors": list(self.fx_color)}
         data["mode"] = self.last_mode
+        data["brightness"] = self.kb_bright
         return data
 
     def apply_profile_data(self, data):
         """Load a whole profile: colors, effect settings, last mode and (if valid) the layout."""
+        if isinstance(data.get("brightness"), int):
+            self.kb_bright = min(max(data["brightness"], 0), 100)
+            self.save_settings()
         self.restore_colors(data)
         fx = data.get("effect")
         if isinstance(fx, dict):

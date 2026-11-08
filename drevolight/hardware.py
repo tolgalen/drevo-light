@@ -130,14 +130,18 @@ class HardwareMixin:
     def apply_colors(self, silent=False):
         plan = self.snapshot()
         self.last_mode = "colors"
+        gain = self.kb_bright / 100
+
+        def rgb(hx):  # the keyboard has no brightness setting for custom colors: dim them here
+            return tuple(round(c * gain) for c in hex_to_rgb(hx))
 
         def job(k):
-            k.kbd(hex_to_rgb(plan["base"]))
+            k.kbd(rgb(plan["base"]))
             for cid, val in plan["categories"].items():
                 if val["on"]:
-                    k.category(cid, hex_to_rgb(val["color"]))
+                    k.category(cid, rgb(val["color"]))
             if plan["keys"]:
-                k.key_set({n: hex_to_rgb(c) for n, c in plan["keys"].items()})
+                k.key_set({n: rgb(c) for n, c in plan["keys"].items()})
         self.run(job, tr("msg.colors_applied"), silent)
 
     def restore_colors(self, data, send=True):

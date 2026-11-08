@@ -219,6 +219,8 @@
   <s id="tip.reset">Clears the editor and turns the keyboard off</s>
   <s id="tip.clear">Removes selections and colors from the editor, without touching the keyboard</s>
   <s id="tip.live">Sends every change to the keyboard automatically</s>
+  <s id="kb.brightness">Brightness</s>
+  <s id="tip.kb_brightness">Dims all the colors sent to the keyboard</s>
   <s id="msg.color_copied">Color copied: {color}</s>
   <s id="msg.no_copied_color">No color has been copied.</s>
   <s id="msg.unknown_key">Unknown key: {name}</s>

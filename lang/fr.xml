@@ -219,6 +219,8 @@
   <s id="tip.reset">Vide l'éditeur et éteint le clavier</s>
   <s id="tip.clear">Supprime sélections et couleurs de l'éditeur, sans toucher au clavier</s>
   <s id="tip.live">Envoie chaque modification au clavier automatiquement</s>
+  <s id="kb.brightness">Luminosité</s>
+  <s id="tip.kb_brightness">Atténue toutes les couleurs envoyées au clavier</s>
   <s id="msg.color_copied">Couleur copiée : {color}</s>
   <s id="msg.no_copied_color">Aucune couleur n'a été copiée.</s>
   <s id="msg.unknown_key">Touche inconnue : {name}</s>

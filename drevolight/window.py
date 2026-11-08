@@ -68,6 +68,8 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         self.apply_on_load = bool(cfg.get("apply_on_load", False))
         self.apply_on_start = bool(cfg.get("apply_on_start", False))
         self.show_splash = bool(cfg.get("show_splash", True))
+        kb = cfg.get("kb_bright", 100)
+        self.kb_bright = min(max(kb, 0), 100) if isinstance(kb, int) else 100  # % applied to the colors sent
         self.close_to_tray = bool(cfg.get("close_to_tray", False))
         self._quitting = False
         self.anim = None
@@ -120,7 +122,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
             "lang": I18.cur, "theme": self.theme_id, "layout": self.layout_id, "size": self.size_id,
             "profile": self.active_profile, "live": self.live, "apply_on_load": self.apply_on_load,
             "apply_on_start": self.apply_on_start, "show_splash": self.show_splash,
-            "close_to_tray": self.close_to_tray,
+            "close_to_tray": self.close_to_tray, "kb_bright": self.kb_bright,
             "auto_profile": self.auto_enabled, "auto_rules": self.auto_rules,
             "recent": self.recent,
             "custom_colors": [QColorDialog.customColor(i).name() for i in range(QColorDialog.customCount())],

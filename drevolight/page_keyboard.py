@@ -5,7 +5,7 @@
 # version. It is distributed WITHOUT ANY WARRANTY. See the LICENSE file.
 """Keyboard page (selection, painting) of the main window."""
 
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import Qt, QTimer
 from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QPushButton,
+    QSlider,
     QVBoxLayout,
     QWidget,
 )
@@ -145,12 +146,29 @@ class KeyboardPageMixin:
         self.live_chk.setChecked(self.live)
         self.live_chk.toggled.connect(self.set_live)
         h.addWidget(self.live_chk)
+        h.addSpacing(12)
+        h.addWidget(QLabel(tr("kb.brightness")))
+        self.kb_slider = self.tip(QSlider(Qt.Horizontal), "tip.kb_brightness")
+        self.kb_slider.setRange(0, 100)
+        self.kb_slider.setValue(self.kb_bright)
+        self.kb_slider.setFixedWidth(140)
+        self.kb_lbl = QLabel(f"{self.kb_bright}%")
+        self.kb_slider.valueChanged.connect(self.set_kb_bright)
+        h.addWidget(self.kb_slider)
+        h.addWidget(self.kb_lbl)
         h.addStretch(1)
         self.sel_lbl = QLabel("")
         h.addWidget(self.sel_lbl)
         v.addLayout(h)
         self.update_count()
         return w
+
+    def set_kb_bright(self, val):
+        self.kb_bright = val
+        self.kb_lbl.setText(f"{val}%")
+        self.save_settings()
+        if self.live:
+            self.live_timer.start(250)
 
     def set_selection(self, names):
         self.kv.end_drag()

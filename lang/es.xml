@@ -219,6 +219,8 @@
   <s id="tip.reset">Limpia el editor y apaga el teclado</s>
   <s id="tip.clear">Borra selecciones y colores del editor, sin tocar el teclado</s>
   <s id="tip.live">Envía cada cambio al teclado automáticamente</s>
+  <s id="kb.brightness">Intensidad</s>
+  <s id="tip.kb_brightness">Atenúa todos los colores enviados al teclado</s>
   <s id="msg.color_copied">Color copiado: {color}</s>
   <s id="msg.no_copied_color">No hay ningún color copiado.</s>
   <s id="msg.unknown_key">Tecla desconocida: {name}</s>

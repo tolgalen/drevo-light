@@ -219,6 +219,8 @@
   <s id="tip.reset">Svuota l'editor e spegne la tastiera</s>
   <s id="tip.clear">Rimuove selezioni e colori dall'editor, senza toccare la tastiera</s>
   <s id="tip.live">Invia ogni modifica alla tastiera automaticamente</s>
+  <s id="kb.brightness">Luminosità</s>
+  <s id="tip.kb_brightness">Attenua tutti i colori inviati alla tastiera</s>
   <s id="msg.color_copied">Colore copiato: {color}</s>
   <s id="msg.no_copied_color">Nessun colore copiato.</s>
   <s id="msg.unknown_key">Tasto sconosciuto: {name}</s>
