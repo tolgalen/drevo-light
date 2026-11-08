@@ -28,6 +28,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,7 +37,19 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt pyinstaller
       - run: pyinstaller packaging/drevo-light.spec --noconfirm
+      - name: Windows installer (Inno Setup) and portable zip
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" packaging\drevo-light.iss
+          Compress-Archive -Path dist\drevo-light -DestinationPath dist\drevo-light-windows-portable.zip
       - uses: actions/upload-artifact@v4
         with:
           name: drevo-light-${{ runner.os }}
           path: dist/drevo-light
+      - name: Attach Windows files to the release
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.ref_name }}" dist\drevo-light-setup.exe dist\drevo-light-windows-portable.zip --clobber
