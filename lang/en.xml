@@ -174,7 +174,9 @@
   <s id="reset.confirm">Reset the keyboard? All colors in the editor will be cleared and the lighting will be turned off.</s>
   <s id="msg.reset">Keyboard reset: colors cleared.</s>
   <s id="menu.manual">User manual…</s>
+  <s id="menu.kbmanual">Keyboard manual…</s>
   <s id="manual.title">User manual</s>
+  <s id="kbmanual.title">Keyboard manual (Tyrfing V2)</s>
   <s id="manual.missing">The manual for this language was not found.</s>
   <s id="btn.print">Print…</s>
   <s id="btn.pdf">Save as PDF…</s>

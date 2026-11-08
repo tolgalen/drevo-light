@@ -174,7 +174,9 @@
   <s id="reset.confirm">Tastatur zurücksetzen? Alle Farben im Editor werden gelöscht und die Beleuchtung wird ausgeschaltet.</s>
   <s id="msg.reset">Tastatur zurückgesetzt: Farben gelöscht.</s>
   <s id="menu.manual">Benutzerhandbuch…</s>
+  <s id="menu.kbmanual">Tastaturhandbuch…</s>
   <s id="manual.title">Benutzerhandbuch</s>
+  <s id="kbmanual.title">Tastaturhandbuch (Tyrfing V2)</s>
   <s id="manual.missing">Das Handbuch für diese Sprache wurde nicht gefunden.</s>
   <s id="btn.print">Drucken…</s>
   <s id="btn.pdf">Als PDF speichern…</s>

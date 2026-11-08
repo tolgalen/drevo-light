@@ -22,10 +22,11 @@ from .state import resolve_color
 
 
 # ---------------------------------------------------------------- user manual
-def manual_html(pal, printing=False):
-    """Manual of the current language wrapped with a stylesheet (dark text on white for printing)."""
+def manual_html(pal, printing=False, kind="manual"):
+    """Manual (`manual`: the app, `kbmanual`: the keyboard) of the current language wrapped with a stylesheet
+    (dark text on white for printing)."""
     for code in (I18.cur, "en"):
-        f = BASE_DIR / "lang" / f"manual_{code}.html"
+        f = BASE_DIR / "lang" / f"{kind}_{code}.html"
         if f.exists():
             body = f.read_text(encoding="utf-8")
             break
@@ -42,9 +43,9 @@ def manual_html(pal, printing=False):
     return f"<html><head><style>{css}</style></head><body>{body}</body></html>"
 
 
-def export_manual_pdf(pal, path):
+def export_manual_pdf(pal, path, kind="manual"):
     doc = QTextDocument()
-    doc.setHtml(manual_html(pal, printing=True))
+    doc.setHtml(manual_html(pal, printing=True, kind=kind))
     pr = _new_printer()
     pr.setOutputFormat(QPrinter.PdfFormat)
     pr.setOutputFileName(path)
@@ -58,30 +59,30 @@ def _new_printer():
     return pr
 
 
-def show_manual(win):
+def show_manual(win, kind="manual"):
     dlg = QDialog(win)
-    dlg.setWindowTitle(tr("manual.title"))
+    dlg.setWindowTitle(tr("manual.title" if kind == "manual" else "kbmanual.title"))
     dlg.resize(900, 700)
     lay = QVBoxLayout(dlg)
     view = QTextBrowser()
     view.setOpenExternalLinks(True)
-    view.setHtml(manual_html(win.pal))
+    view.setHtml(manual_html(win.pal, kind=kind))
     lay.addWidget(view, 1)
 
     def do_print():
         pr = _new_printer()
         if QPrintDialog(pr, dlg).exec() == QDialog.Accepted:
             doc = QTextDocument()
-            doc.setHtml(manual_html(win.pal, printing=True))
+            doc.setHtml(manual_html(win.pal, printing=True, kind=kind))
             doc.print_(pr)
 
     def do_pdf():
-        path, _ = QFileDialog.getSaveFileName(dlg, tr("btn.pdf"), "Drevo-Light-manual.pdf",
+        path, _ = QFileDialog.getSaveFileName(dlg, tr("btn.pdf"), "Drevo-Light-manual.pdf" if kind == "manual" else "Drevo-Tyrfing-V2-manual.pdf",
                                               f"{tr('file.pdf')} (*.pdf)")
         if path:
             if not path.lower().endswith(".pdf"):
                 path += ".pdf"
-            export_manual_pdf(win.pal, path)
+            export_manual_pdf(win.pal, path, kind)
             win.status.setText(tr("msg.pdf_saved", path=path))
 
     h = QHBoxLayout()

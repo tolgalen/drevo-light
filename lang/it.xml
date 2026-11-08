@@ -174,7 +174,9 @@
   <s id="reset.confirm">Reimpostare la tastiera? Tutti i colori dell'editor verranno cancellati e l'illuminazione verrà spenta.</s>
   <s id="msg.reset">Tastiera reimpostata: colori cancellati.</s>
   <s id="menu.manual">Manuale utente…</s>
+  <s id="menu.kbmanual">Manuale della tastiera…</s>
   <s id="manual.title">Manuale utente</s>
+  <s id="kbmanual.title">Manuale della tastiera (Tyrfing V2)</s>
   <s id="manual.missing">Manuale non trovato per questa lingua.</s>
   <s id="btn.print">Stampa…</s>
   <s id="btn.pdf">Salva come PDF…</s>

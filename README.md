@@ -68,6 +68,7 @@ Captured from the running application with a Drevo Tyrfing V2 connected (note th
 - 20 profile slots (colors, effect, last mode, layout), manager with thumbnails, import/export to JSON, optional apply-on-load / apply-on-start.
 - 6 languages (es, en, fr, it, de, pt) and 5 themes (system, light, dark, dark blue, Drevo); selectable from the menu bar.
 - Built-in user manual in each language, printable and exportable to PDF (`F1`).
+- Keyboard manual (Help menu): the Tyrfing V2's own FN shortcuts, effects, custom backlight and macros, based on the official manual, in each language.
 - Unsaved-changes tracking (`*` in the window title), remembered window geometry, optional splash screen.
 
 ## Installation and running
@@ -191,7 +192,7 @@ drevolight/
   gfx.py               drawing helpers, system palette, QSS stylesheet, SVG icons
   dialogs.py           manual/PDF, about, licenses, gradient, profile manager, udev installer
   widgets.py           status Dot, logo, sidebar buttons, splash
-lang/                  one XML per language + manual_xx.html per language
+lang/                  one XML per language + manual_xx.html and kbmanual_xx.html (keyboard manual) per language
 assets/                app icon (png/ico), Lucide SVG icons
 packaging/             PyInstaller spec, build scripts, Inno Setup, .desktop, installer
 tests/                 pytest suite

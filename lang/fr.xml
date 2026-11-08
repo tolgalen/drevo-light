@@ -174,7 +174,9 @@
   <s id="reset.confirm">Réinitialiser le clavier ? Toutes les couleurs de l'éditeur seront effacées et l'éclairage sera éteint.</s>
   <s id="msg.reset">Clavier réinitialisé : couleurs effacées.</s>
   <s id="menu.manual">Manuel d'utilisation…</s>
+  <s id="menu.kbmanual">Manuel du clavier…</s>
   <s id="manual.title">Manuel d'utilisation</s>
+  <s id="kbmanual.title">Manuel du clavier (Tyrfing V2)</s>
   <s id="manual.missing">Le manuel de cette langue est introuvable.</s>
   <s id="btn.print">Imprimer…</s>
   <s id="btn.pdf">Enregistrer en PDF…</s>

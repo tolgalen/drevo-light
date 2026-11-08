@@ -360,6 +360,7 @@ class MainWindow(KeyboardPageMixin, ColorsPageMixin, EffectsPageMixin, HardwareM
         m = mb.addMenu(tr("menu.help"))
         act = m.addAction(tr("menu.manual"), lambda: dialogs.show_manual(self))
         act.setShortcut(QKeySequence.HelpContents)
+        m.addAction(tr("menu.kbmanual"), lambda: dialogs.show_manual(self, "kbmanual"))
         m.addAction(tr("menu.about"), lambda: dialogs.show_about(self))
         m.addSeparator()
         m.addAction(tr("menu.license"), lambda: dialogs.show_licenses(self, 0))

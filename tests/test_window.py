@@ -302,6 +302,9 @@ def test_manual_pdf_exports_in_every_language(win, tmp_path):
         out = tmp_path / f"{code}.pdf"
         dialogs.export_manual_pdf(win.pal, str(out))
         assert out.read_bytes()[:4] == b"%PDF"
+        out = tmp_path / f"kb_{code}.pdf"
+        dialogs.export_manual_pdf(win.pal, str(out), "kbmanual")
+        assert out.read_bytes()[:4] == b"%PDF"
     I18.set("es")
 
 
@@ -315,6 +318,7 @@ def test_translations_are_complete_and_consistent():
             assert placeholder(v) == placeholder(ref[k]), (code, k)
     for code in I18.langs:
         assert (I18.langs and __import__("pathlib").Path(f"lang/manual_{code}.html").exists()), code
+        assert __import__("pathlib").Path(f"lang/kbmanual_{code}.html").exists(), code
 
 
 def test_every_ui_string_used_in_code_exists():

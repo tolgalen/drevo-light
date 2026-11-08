@@ -174,7 +174,9 @@
   <s id="reset.confirm">¿Reiniciar el teclado? Se borrarán todos los colores del editor y se apagará la iluminación.</s>
   <s id="msg.reset">Teclado reiniciado: colores limpiados.</s>
   <s id="menu.manual">Manual de usuario…</s>
+  <s id="menu.kbmanual">Manual del teclado…</s>
   <s id="manual.title">Manual de usuario</s>
+  <s id="kbmanual.title">Manual del teclado (Tyrfing V2)</s>
   <s id="manual.missing">No se encuentra el manual para este idioma.</s>
   <s id="btn.print">Imprimir…</s>
   <s id="btn.pdf">Guardar como PDF…</s>

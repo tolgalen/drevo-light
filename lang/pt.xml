@@ -174,7 +174,9 @@
   <s id="reset.confirm">Repor o teclado? Todas as cores do editor serão apagadas e a iluminação será desligada.</s>
   <s id="msg.reset">Teclado reposto: cores limpas.</s>
   <s id="menu.manual">Manual do utilizador…</s>
+  <s id="menu.kbmanual">Manual do teclado…</s>
   <s id="manual.title">Manual do utilizador</s>
+  <s id="kbmanual.title">Manual do teclado (Tyrfing V2)</s>
   <s id="manual.missing">O manual deste idioma não foi encontrado.</s>
   <s id="btn.print">Imprimir…</s>
   <s id="btn.pdf">Guardar como PDF…</s>
