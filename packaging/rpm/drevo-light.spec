@@ -11,7 +11,7 @@
 AutoReqProv: no
 
 Name:           drevo-light
-Version:        %{?app_version}%{!?app_version:1.1}
+Version:        %{?app_version}%{!?app_version:1.2}
 Release:        1%{?dist}
 Summary:        Lighting editor for the Drevo Tyrfing V2 keyboard
 License:        GPL-3.0-or-later
@@ -52,5 +52,7 @@ udevadm trigger --subsystem-match=hidraw --subsystem-match=usb >/dev/null 2>&1 |
 %{_datadir}/applications/drevo-light.desktop
 
 %changelog
+* Sun Nov 08 2026 candion <candion@gmail.com> - 1.2-1
+- Brightness slider in the Keyboard tab
 * Sun Nov 08 2026 candion <candion@gmail.com> - 1.1-1
 - Release 1.1

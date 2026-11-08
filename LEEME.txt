@@ -1,4 +1,4 @@
-Drevo Light 1.1 - Tyrfing V2   (interfaz PySide6 / Qt, licencia GPL v3 o posterior)
+Drevo Light 1.2 - Tyrfing V2   (interfaz PySide6 / Qt, licencia GPL v3 o posterior)
 
 EJECUTAR
   Linux:   ./run.sh      (necesita python3-venv; la primera vez instala PySide6 y hidapi)

@@ -1,7 +1,7 @@
 ; Inno Setup script (https://jrsoftware.org/isinfo.php): iscc packaging\drevo-light.iss
 [Setup]
 AppName=Drevo Light
-AppVersion=1.1
+AppVersion=1.2
 AppPublisher=candion
 DefaultDirName={autopf}\Drevo Light
 DefaultGroupName=Drevo Light

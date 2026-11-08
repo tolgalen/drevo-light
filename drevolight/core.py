@@ -16,7 +16,7 @@ from .keys import CATEGORIES, CATEGORY_KEYS, NUMPAD_KEYS
 BASE_DIR = Path(__file__).resolve().parent.parent
 LANG_DIR = BASE_DIR / "lang"
 ASSETS_DIR = BASE_DIR / "assets"
-APP_VERSION = "1.1"
+APP_VERSION = "1.2"
 GOLD = "#f0b323"
 VID, PID = 0x0416, 0xA0F8
 
