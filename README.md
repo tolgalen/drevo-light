@@ -269,6 +269,7 @@ CI also runs `ruff check .` (see `ruff.toml`).
 | Windows executable | `packaging\build_windows.bat` → `dist\drevo-light\drevo-light.exe` |
 | Windows installer | `packaging/drevo-light.iss` (Inno Setup; run automatically by the batch file if `iscc` is on PATH) |
 | Fedora RPMs | `packaging/build_rpm.sh 43 44 45` (podman) → `dist/rpm/drevo-light-<ver>-1.fcNN.x86_64.rpm`; spec in `packaging/rpm/` |
+| Debian/Ubuntu .deb | `packaging/build_deb.sh` (podman; Debian 12/13, Ubuntu 22.04/24.04/26.04) → `dist/deb/` |
 | Linux menu entry | `packaging/drevo-light.desktop` + `packaging/install_linux.sh` |
 | PyInstaller spec | `packaging/drevo-light.spec` (bundles `lang/`, `assets/`, license files, the udev rule; excludes unused Qt modules) |
 | Clean for git | `./clean.sh` (or `clean.bat`) removes the virtual environment, caches and build output; `./clean.sh -n` is a dry run |
